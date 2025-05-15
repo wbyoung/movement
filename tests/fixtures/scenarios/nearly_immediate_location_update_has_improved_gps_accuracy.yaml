@@ -1,0 +1,61 @@
+description: >
+  When walking from home to a neighbors house, and updates that are
+  theoretically from the start of the trip are received within a few seconds of
+  each other near the end of the trip (i.e. traveling through a cell dead zone),
+  it uses the history to determine a usable entry to calculate the `speed` &
+  `mode_of_transit`, skipping the history entries that are recently clustered.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed: 0.01
+  mode_of_transit: walking
+  history:
+  - at: '2024-09-05 11:35:02.293842-07:00'
+    accuracy: 31
+    location: *home_location
+  - at: '2024-09-05 11:34:47.293842-07:00'
+    accuracy: 12
+    location: *home_location_2
+  - at: '2024-09-05 11:19:07.381234-07:00'
+    accuracy: 6
+    location: *home_location
+  last_changed: '2024-09-05T11:35:02.293842-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:35:07.381234-07:00'
+  from_state:
+    attributes:
+      <<: *home_location
+      gps_accuracy: 31
+  to_state:
+    attributes:
+      <<: *neighbors_house_location
+      gps_accuracy: 28
+result:
+  distance: 83.657
+  speed: 0.587
+  mode_of_transit: walking
+  transition:
+  history:
+  - at: '2024-09-05 11:35:07.381234-07:00'
+    accuracy: 28
+    location: *neighbors_house_location
+  - at: '2024-09-05 11:35:02.293842-07:00' # kept for recency
+    accuracy: 31
+    location: *home_location
+  - at: '2024-09-05 11:34:47.293842-07:00' # kept for recency & accuracy
+    accuracy: 12
+    location: *home_location_2
+  - at: '2024-09-05 11:19:07.381234-07:00' # kept for accuracy & to calculate speed if updates are rapid
+    accuracy: 6
+    location: *home_location
+  adjustments: 0
+  ignore_count: 0

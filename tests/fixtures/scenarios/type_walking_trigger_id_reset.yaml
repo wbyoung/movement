@@ -1,0 +1,19 @@
+description: reset for a new day
+change:
+  id: mode_type_sensor
+  now: '2024-09-05T11:35:07.381234-07:00'
+sensor_type: walking
+sensor_state:
+  state: 83.5
+  attributes:
+    trip_start: '2024-09-05T11:20:19.183472-07:00'
+    trip_distance: 15.3
+    trip_adjustments: 1.1
+trigger:
+  id: reset
+result:
+  state: 0
+  attributes:
+    trip_start:
+    trip_distance:
+    trip_adjustments:

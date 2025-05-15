@@ -1,0 +1,22 @@
+alias: Request Location from Akio Toyoda While Driving
+description: ""
+mode: single
+triggers:
+  - minutes: /2
+    trigger: time_pattern
+conditions:
+  - condition: state
+    entity_id: sensor.akio_toyoda_mode_of_transit
+    state: driving
+actions:
+  - if:
+      - condition: template
+        value_template: |
+          {{
+            states.sensor.akio_toyoda_distance_updates.last_changed <
+            now() - timedelta(minutes=2)
+          }}
+    then:
+      - action: notify.mobile_app_akio_toyodas_phonne
+        data:
+          message: request_location_update

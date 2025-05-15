@@ -1,0 +1,35 @@
+description: >
+  Test specific distance sensor of biking type; biking>>in transition
+change:
+  id: mode_type_sensor
+  now: '2024-09-05T11:35:07.381234-07:00'
+sensor_type: biking
+sensor_state:
+  state: 22.1
+  attributes:
+    trip_start: '2024-09-05 11:35:07.381234-07:00'
+    trip_distance: 15.3
+    trip_adjustments: 1.1
+trigger:
+  id: add_distance
+  from_state:
+    state: 3.23
+    attributes:
+      mode_of_transit:
+      adjustments: 0
+      transition:
+  to_state:
+    state: 3.33
+    attributes:
+      mode_of_transit:
+      adjustments: 0
+      transition:
+      - distance: 0.1
+result:
+  # it should not have any distance added at this point because the
+  # transition is incomplete (no `adjustments` on transition objects).
+  state: 22.1
+  attributes:
+    trip_start: '2024-09-05 11:35:07.381234-07:00'
+    trip_distance: 15.3
+    trip_adjustments: 1.1

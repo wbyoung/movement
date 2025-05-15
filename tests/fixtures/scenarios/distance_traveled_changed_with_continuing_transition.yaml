@@ -1,0 +1,15 @@
+description: >
+  When the trigger fires, and a transition is continuing, it keeps the existing
+  value.
+coordinator:
+  transition:
+  - distance: 0.321
+additional_setup: mock_cancel_callback
+change:
+  id: _internal:speed_valid_util
+  coordinator:
+    distance: 0.018
+    transition:
+    - distance: 0.321
+    - distance: 0.018
+result:

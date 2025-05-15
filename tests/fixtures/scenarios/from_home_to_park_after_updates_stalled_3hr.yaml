@@ -1,0 +1,37 @@
+description: >
+  When moving from home to the nearby park and no updates have been made
+  for 3hr, it still adds the distance change to the state, maintains an unknown
+  `speed` and `mode_of_transit`, and puts the distance traveled in `transition`.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed:
+  mode_of_transit:
+  last_changed: '2024-09-05T08:20:19.183472-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:21:07.381234-07:00'
+  from_state:
+    attributes: *home_location
+  to_state:
+    attributes: *park_location
+result:
+  distance: 84.258
+  speed:
+  mode_of_transit:
+  transition:
+  - distance: 0.758
+  history:
+  - at: '2024-09-05 11:21:07.381234-07:00'
+    accuracy: 1.0e+99
+    location: *park_location
+  adjustments: 0
+  ignore_count: 0

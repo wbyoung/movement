@@ -1,0 +1,18 @@
+description: >
+  When a change occurs, and there are more items in transition than before, but
+  there is currently no listener/timer/timeout configured (i.e. no
+  `_updates_stalled_listener` instance var due to no `mock_cancel_callback` in
+  the `additional_setup` section below), it updates the state to 20 min from
+  now.
+coordinator:
+  transition:
+  - distance: 0.321
+additional_setup:
+change:
+  id: _internal:speed_valid_util
+  coordinator:
+    distance: 0.018
+    transition:
+    - distance: 0.321
+    - distance: 0.018
+result: 1200.0

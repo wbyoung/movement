@@ -1,0 +1,49 @@
+description: >
+  When moving a small distance and an update within 1min has moderate location
+  accuracy, expired history, and the distance moved does not overcome the GPS
+  accuracies, it puts the distance traveled in `transition` because no history
+  entries are usable and maintains the current `speed` & `mode_of_transit`.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed: 0.01
+  mode_of_transit: walking
+  history:
+  - at: '2024-09-04 11:20:01.381234-07:00'
+    accuracy: 620
+    location: *home_location
+  - at: '2024-09-04 11:01:19.29384-07:00'
+    accuracy: 610
+    location: *park_location
+  last_changed: '2024-09-05T11:20:03.394852-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:20:59.281834-07:00'
+  from_state:
+    attributes:
+      <<: *home_location
+      gps_accuracy: 30
+  to_state:
+    attributes:
+      <<: *neighbors_house_location
+      gps_accuracy: 150
+result:
+  distance: 83.657
+  speed: 0.01
+  mode_of_transit: walking
+  transition:
+  - distance: 0.157
+  history:
+  - at: '2024-09-05 11:20:59.281834-07:00'
+    accuracy: 150
+    location: *neighbors_house_location
+  adjustments: 0
+  ignore_count: 0

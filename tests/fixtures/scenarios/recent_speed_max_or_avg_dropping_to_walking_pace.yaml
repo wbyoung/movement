@@ -1,0 +1,37 @@
+description: >
+  When the current speed is walking pace, and the current mode is still set to
+  driving, and the recent speed max or average values drop to walking speed, it
+  calculates a walking `speed` & `mode_of_transit`.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed: 4
+  mode_of_transit: driving
+  history:
+  - at: '2024-09-05 11:35:07.381234-07:00'
+    accuracy: 6
+    location: *park_location
+  last_changed: '2024-09-05T11:20:19.183472-07:00'
+  statistics:
+    speed_recent_avg: 3.4
+    speed_recent_max: 6.5
+change:
+  id: recalculate_mode_of_transit
+  from_state: # omitted for brevity
+  to_state: # omitted for brevity
+result:
+  distance: 83.5
+  speed: 4
+  mode_of_transit: walking
+  transition:
+  history:
+  - at: '2024-09-05 11:35:07.381234-07:00'
+    accuracy: 6
+    location: *park_location
+  adjustments: 0
+  ignore_count: 0

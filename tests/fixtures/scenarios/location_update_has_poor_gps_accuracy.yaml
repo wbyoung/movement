@@ -1,0 +1,47 @@
+description: >
+  When walking and an update has poor location accuracy, it ignores the update
+  by maintaining all state & attributes besides `ignore_count` which gets
+  incremented and `history` which includes the new item.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed: 0.01
+  mode_of_transit: walking
+  history:
+  - at: '2024-09-05 11:35:01.381234-07:00'
+    accuracy: 6
+    location: *park_location
+  last_changed: '2024-09-05T11:20:19.183472-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:35:07.381234-07:00'
+  from_state:
+    attributes:
+      <<: *home_location
+      gps_accuracy: 6
+  to_state:
+    attributes:
+      <<: *park_location
+      gps_accuracy: 1414
+result:
+  distance: 83.5
+  speed: 0.01
+  mode_of_transit: walking
+  transition:
+  history:
+  - at: '2024-09-05 11:35:07.381234-07:00'
+    accuracy: 1414
+    ignore: inaccurate
+  - at: '2024-09-05 11:35:01.381234-07:00'
+    accuracy: 6
+    location: *park_location
+  adjustments: 0
+  ignore_count: 1

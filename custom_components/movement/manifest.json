@@ -1,0 +1,17 @@
+{
+  "domain": "movement",
+  "name": "Movement",
+  "codeowners": [
+    "@wbyoung"
+  ],
+  "config_flow": true,
+  "dependencies": ["device_tracker", "template"],
+  "documentation": "https://github.com/wbyoung/movement",
+  "homekit": {},
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/wbyoung/movement/issues",
+  "requirements": [],
+  "ssdp": [],
+  "version": "0.1.0",
+  "zeroconf": []
+}

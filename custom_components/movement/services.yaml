@@ -1,0 +1,27 @@
+add_distance:
+  fields:
+    config_entry:
+      required: true
+      selector:
+        config_entry:
+          integration: movement
+    distance:
+      required: true
+      selector:
+        number:
+          min: -40075
+          max: 40075
+          mode: box
+          unit_of_measurement: "km"
+    adjustments:
+      required: false
+      selector:
+        number:
+          min: -40075
+          max: 40075
+          mode: box
+          unit_of_measurement: "km"
+    mode_of_transit:
+      required: false
+      selector:
+        text:

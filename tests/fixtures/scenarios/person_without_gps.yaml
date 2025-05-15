@@ -1,0 +1,35 @@
+description: A person changing state without location details
+config_entry:
+  trip_addition: 0
+  multipliers:
+    neighborhood: 1
+    local: 1
+    highway: 1
+coordinator:
+  distance: 83.5
+  speed: 2.23
+  mode_of_transit: walking
+  last_changed: '2024-09-05T11:20:19.183472-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:35:07.381234-07:00'
+  from_state:
+    state: home
+    attributes: {}
+  to_state:
+    state: not_home
+    attributes: {}
+result:
+  distance: 83.5
+  speed: 2.23
+  mode_of_transit: walking
+  transition:
+  history:
+  - at: '2024-09-05 11:35:07.381234-07:00'
+    accuracy: 1.0e+99
+    ignore: no_location
+  adjustments: 0
+  ignore_count: 1

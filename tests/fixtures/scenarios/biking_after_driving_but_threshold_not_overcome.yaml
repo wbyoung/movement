@@ -1,0 +1,39 @@
+description: >
+  When moving at biking speed, and the current mode is still set to driving,
+  and the distance covered (including that in transition) is less than 1km, it
+  maintains the `mode_of_transit` because the distance threshold was not reached
+  and puts the distance change in `transition` (see
+  `DISTANCE_THRESHOLDS_BEFORE_MODE_CHANGE` in `coordinator.py`).
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed: 10.32
+  mode_of_transit: driving
+  last_changed: '2024-09-05T11:20:19.183472-07:00'
+  statistics:
+    speed_recent_avg: 8.5
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:24:07.381234-07:00'
+  from_state:
+    attributes: *home_location
+  to_state:
+    attributes: *park_location
+result:
+  distance: 84.258
+  speed: 11.965
+  mode_of_transit: driving
+  transition:
+  - distance: 0.758
+  history:
+  - at: '2024-09-05 11:24:07.381234-07:00'
+    accuracy: 1.0e+99
+    location: *park_location
+  adjustments: 0
+  ignore_count: 0

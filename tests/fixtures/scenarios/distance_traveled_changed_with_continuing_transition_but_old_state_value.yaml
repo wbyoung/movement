@@ -1,0 +1,13 @@
+description: >
+  When a change causes a transition to start, it updates the state to 20 min
+  from now.
+coordinator:
+  transition:
+additional_setup: mock_cancel_callback
+change:
+  id: _internal:speed_valid_util
+  coordinator:
+    distance: 0.321
+    transition:
+    - distance: 0.321
+result: 1200.0

@@ -1,0 +1,37 @@
+description: >
+  When driving from home to the nearby park, and the current mode is still set
+  to biking from a slow start, and the speed from this change is fast enough to
+  raise the mode of transit to driving, it calculates a driving `speed` &
+  `mode_of_transit`.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed: 9.2
+  mode_of_transit: biking
+  last_changed: '2024-09-05T11:20:19.183472-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:21:07.381234-07:00'
+  from_state:
+    attributes: *home_location
+  to_state:
+    attributes: *park_location
+result:
+  distance: 84.686
+  speed: 56.65
+  mode_of_transit: driving
+  transition:
+  history:
+  - at: '2024-09-05 11:21:07.381234-07:00'
+    accuracy: 1.0e+99
+    location: *park_location
+  adjustments: 0.428
+  ignore_count: 0

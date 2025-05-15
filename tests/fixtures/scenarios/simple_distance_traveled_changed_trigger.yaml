@@ -1,0 +1,12 @@
+description: >
+  When the trigger fires for a distance change, it updates the state to 20 min
+  from now.
+coordinator:
+  transition:
+additional_setup: mock_cancel_callback
+change:
+  id: _internal:speed_valid_util
+  coordinator:
+    distance: 1
+    transition:
+result: 1200.0

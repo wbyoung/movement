@@ -1,0 +1,36 @@
+description: >
+  When a driving type sensor receives a distance change update for driving &
+  there was a transition previously completed in the previous update, it does
+  not include the transitional distance changes.
+change:
+  id: mode_type_sensor
+  now: '2024-09-05T11:35:07.381234-07:00'
+sensor_type: driving
+sensor_state:
+  state: 22.1
+  attributes:
+    trip_start: '2024-09-05T11:20:19.183472-07:00'
+    trip_distance: 15.3
+    trip_adjustments: 1.1
+trigger:
+  id: add_distance
+  from_state:
+    state: 1.1
+    attributes:
+      mode_of_transit: driving
+      adjustments: 0.03
+      transition:
+      - distance: 0.12
+        adjustments: 0.02 # this has adjustments indicating it's completed
+  to_state:
+    state: 1.2
+    attributes:
+      mode_of_transit: driving
+      adjustments: 0.03
+      transition: # cleared in this update since it was completed in the last update
+result:
+  state: 22.2
+  attributes:
+    trip_start: '2024-09-05 11:20:19.183472-07:00'
+    trip_distance: 15.4
+    trip_adjustments: 1.1

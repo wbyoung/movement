@@ -1,0 +1,43 @@
+_anchors:
+  home_location: &home_location
+    latitude: 30.3129805
+    longitude: -97.7240428
+  home_location_2: &home_location_2 # tiny movement in home
+    latitude: 30.3129804
+    longitude: -97.7240429
+  home_location_3: &home_location_3 # tiny movement in home
+    latitude: 30.3129806
+    longitude: -97.7240427
+  home_location_4: &home_location_4 # tiny movement in home
+    latitude: 30.3129806
+    longitude: -97.7241133
+  near_home_inaccurate_location: &near_home_inaccurate_location
+    latitude: 30.3211839
+    longitude: -97.7189441
+  park_location: &park_location
+    latitude: 30.3071380
+    longitude: -97.7281200
+  park_location_2: &park_location_2 # in park
+    latitude: 30.3070902
+    longitude: -97.7280811
+  park_location_3: &park_location_3 # in park
+    latitude: 30.3071718
+    longitude: -97.7280596
+  neighbors_house_location: &neighbors_house_location # over on another street
+    latitude: 30.3132550
+    longitude: -97.7224430
+  between_neighbors_location: &between_neighbors_location # on a street between home & neighbor
+    latitude: 30.3142459
+    longitude: -97.7227103
+  highway_location_1: &highway_location_1
+    latitude: 30.3219283
+    longitude: -97.7069367
+  highway_location_2: &highway_location_2
+    latitude: 30.3296143
+    longitude: -97.6377816
+  ord_location: &ord_location
+    latitude: 41.9760934
+    longitude: -87.8972986
+  sea_location: &sea_location
+    latitude: 47.4483688
+    longitude: -122.3111675

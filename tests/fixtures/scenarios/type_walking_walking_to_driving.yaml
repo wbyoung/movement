@@ -1,0 +1,31 @@
+description: >
+  Test specific distance sensor of walking type; no distance change moving to
+  driving
+change:
+  id: mode_type_sensor
+  now: '2024-09-05T11:35:07.381234-07:00'
+sensor_type: walking
+sensor_state:
+  state: 22.1
+  attributes:
+    trip_start: '2024-09-05T11:20:19.183472-07:00'
+    trip_distance: 15.3
+    trip_adjustments: 1.1
+trigger:
+  id: add_distance
+  from_state:
+    state: 1.1
+    attributes:
+      mode_of_transit: walking
+      adjustments: 0
+  to_state:
+    state: 1.43
+    attributes:
+      mode_of_transit: driving
+      adjustments: 0
+result:
+  state: 22.1
+  attributes:
+    trip_start: '2024-09-05 11:20:19.183472-07:00'
+    trip_distance: 15.3
+    trip_adjustments: 1.1

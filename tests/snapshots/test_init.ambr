@@ -1,0 +1,3158 @@
+# serializer version: 1
+# name: test_event_emitted_for_dependent_template_entity[midnight_reset][event-triggers]
+  list([
+    tuple(
+      EventSnapshot({
+        'context': <ANY>,
+        'data': ReadOnlyDict({
+          '_for': 'reset_request',
+          'config_entry_id': 'mock-entry-id',
+          'entity_id': 'sensor.toyota_prius_distance',
+          'from_state': dict({
+            'attributes': dict({
+              'adjustments': 0,
+              'change_count': -1,
+              'ignore_count': 0,
+              'mode_of_transit': None,
+              'speed': None,
+            }),
+            'state': 0,
+          }),
+          'reason': 'reset',
+          'to_state': dict({
+            'attributes': dict({
+              'adjustments': 0,
+              'change_count': -1,
+              'ignore_count': 0,
+              'mode_of_transit': None,
+              'speed': None,
+            }),
+            'state': 0,
+          }),
+          'updates': dict({
+            'attributes': dict({
+              'trip_adjustments': None,
+              'trip_distance': None,
+              'trip_start': None,
+            }),
+            'state': '0',
+          }),
+        }),
+        'event_type': 'movement.template_entity_should_apply_update',
+        'id': <ANY>,
+        'origin': 'LOCAL',
+        'time_fired': <ANY>,
+      }),
+    ),
+    tuple(
+      EventSnapshot({
+        'context': <ANY>,
+        'data': ReadOnlyDict({
+          '_for': 'updates_stalled_indicator',
+          'config_entry_id': 'mock-entry-id',
+          'entity_id': 'sensor.toyota_prius_distance',
+          'from_state': dict({
+            'attributes': dict({
+              'adjustments': 0,
+              'change_count': -1,
+              'ignore_count': 0,
+              'mode_of_transit': None,
+              'speed': None,
+            }),
+            'state': 0,
+          }),
+          'reason': 'update',
+          'to_state': dict({
+            'attributes': dict({
+              'adjustments': 0,
+              'change_count': -1,
+              'ignore_count': 0,
+              'mode_of_transit': None,
+              'speed': None,
+            }),
+            'state': 0,
+          }),
+          'updates': dict({
+            'attributes': dict({
+              'trip_adjustments': None,
+              'trip_distance': None,
+              'trip_start': None,
+            }),
+            'state': '1.34',
+          }),
+        }),
+        'event_type': 'movement.template_entity_should_apply_update',
+        'id': <ANY>,
+        'origin': 'LOCAL',
+        'time_fired': <ANY>,
+      }),
+    ),
+  ])
+# ---
+# name: test_event_emitted_for_dependent_template_entity[mode_type_driving][event-triggers]
+  list([
+    tuple(
+      EventSnapshot({
+        'context': <ANY>,
+        'data': ReadOnlyDict({
+          '_for': 'state_changed_data',
+          'config_entry_id': 'mock-entry-id',
+          'entity_id': 'sensor.toyota_prius_distance',
+          'from_state': dict({
+            'attributes': dict({
+              'adjustments': 0,
+              'change_count': -1,
+              'ignore_count': 0,
+              'mode_of_transit': None,
+              'speed': None,
+            }),
+            'state': 0,
+          }),
+          'reason': 'update',
+          'to_state': dict({
+            'attributes': dict({
+              'adjustments': 0.0,
+              'change_count': 1,
+              'ignore_count': 0,
+              'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+              'speed': 22.144366361096154,
+            }),
+            'state': 0.2874031193026376,
+          }),
+          'updates': dict({
+            'attributes': dict({
+              'trip_adjustments': 0.0,
+              'trip_distance': 0.2874031193026376,
+              'trip_start': '2025-05-20 10:52:18.726245+00:00',
+            }),
+            'state': '1.6274031193026377',
+          }),
+        }),
+        'event_type': 'movement.template_entity_should_apply_update',
+        'id': <ANY>,
+        'origin': 'LOCAL',
+        'time_fired': <ANY>,
+      }),
+    ),
+  ])
+# ---
+# name: test_event_emitted_for_dependent_template_entity[mode_type_missing][event-triggers]
+  list([
+  ])
+# ---
+# name: test_scheduled_actions[midnight_reset][entities]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_traveled',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-distance',
+      'original_name': 'Distance traveled',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_traveled',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_traveled',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_adjustments',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-plus',
+      'original_name': 'Distance adjustments',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_adjustments',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_adjustments',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_walking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Distance walking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_walking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_walking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_biking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:bike',
+      'original_name': 'Distance biking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_biking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_biking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_driving',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:car-convertible',
+      'original_name': 'Distance driving',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_driving',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_driving',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_speed',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.SPEED: 'speed'>,
+      'original_icon': 'mdi:routes-clock',
+      'original_name': 'Speed',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'speed',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_speed',
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          <ModeOfTransit.WALKING: 'walking'>,
+          <ModeOfTransit.BIKING: 'biking'>,
+          <ModeOfTransit.DRIVING: 'driving'>,
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_mode_of_transit',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': <SensorDeviceClass.ENUM: 'enum'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Mode of transit',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'mode_of_transit',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_mode_of_transit',
+      'unit_of_measurement': None,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_gps_accuracy',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:cellphone-marker',
+      'original_name': 'GPS accuracy',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'gps_accuracy',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_gps_accuracy',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_updates',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': 'mdi:numeric-positive-1',
+      'original_name': 'Distance updates',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_updates',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_updates',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_distance_adjustments]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance adjustments',
+      'icon': 'mdi:map-marker-plus',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_adjustments',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_distance_biking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance biking',
+      'icon': 'mdi:bike',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': None,
+      'trip_distance': None,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_biking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_distance_driving]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance driving',
+      'icon': 'mdi:car-convertible',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': None,
+      'trip_distance': None,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_driving',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_distance_traveled]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 0.0,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': None,
+      'speed': None,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': None,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_distance_updates]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'friendly_name': 'Mock Title Distance updates',
+      'icon': 'mdi:numeric-positive-1',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_updates',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '2',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_distance_walking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance walking',
+      'icon': 'mdi:walk',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': None,
+      'trip_distance': None,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_walking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_gps_accuracy]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title GPS accuracy',
+      'icon': 'mdi:cellphone-marker',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_gps_accuracy',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '5',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_mode_of_transit]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'enum',
+      'friendly_name': 'Mock Title Mode of transit',
+      'icon': 'mdi:walk',
+      'options': list([
+        <ModeOfTransit.WALKING: 'walking'>,
+        <ModeOfTransit.BIKING: 'biking'>,
+        <ModeOfTransit.DRIVING: 'driving'>,
+      ]),
+      'transitioning': False,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_mode_of_transit',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unknown',
+  })
+# ---
+# name: test_scheduled_actions[midnight_reset][sensor.mock_title_speed]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'speed',
+      'friendly_name': 'Mock Title Speed',
+      'icon': 'mdi:routes-clock',
+      'speed_recent_avg': None,
+      'speed_recent_max': None,
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_speed',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unknown',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][entities]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_traveled',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-distance',
+      'original_name': 'Distance traveled',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_traveled',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_traveled',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_adjustments',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-plus',
+      'original_name': 'Distance adjustments',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_adjustments',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_adjustments',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_walking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Distance walking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_walking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_walking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_biking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:bike',
+      'original_name': 'Distance biking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_biking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_biking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_driving',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:car-convertible',
+      'original_name': 'Distance driving',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_driving',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_driving',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_speed',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.SPEED: 'speed'>,
+      'original_icon': 'mdi:routes-clock',
+      'original_name': 'Speed',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'speed',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_speed',
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          <ModeOfTransit.WALKING: 'walking'>,
+          <ModeOfTransit.BIKING: 'biking'>,
+          <ModeOfTransit.DRIVING: 'driving'>,
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_mode_of_transit',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': <SensorDeviceClass.ENUM: 'enum'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Mode of transit',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'mode_of_transit',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_mode_of_transit',
+      'unit_of_measurement': None,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_gps_accuracy',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:cellphone-marker',
+      'original_name': 'GPS accuracy',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'gps_accuracy',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_gps_accuracy',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_updates',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': 'mdi:numeric-positive-1',
+      'original_name': 'Distance updates',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_updates',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_updates',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_distance_adjustments]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance adjustments',
+      'icon': 'mdi:map-marker-plus',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_adjustments',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.0',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_distance_biking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance biking',
+      'icon': 'mdi:bike',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_biking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_distance_driving]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance driving',
+      'icon': 'mdi:car-convertible',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0.0,
+      'trip_distance': 0.2874031193026376,
+      'trip_start': HAFakeDatetime(2025, 5, 20, 10, 52, 18, 726245, tzinfo=datetime.timezone.utc),
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_driving',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.287403119302638',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_distance_traveled]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 0.0,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+      'speed': 22.144366361096154,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': None,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.287403119302638',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_distance_updates]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'friendly_name': 'Mock Title Distance updates',
+      'icon': 'mdi:numeric-positive-1',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_updates',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '1',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_distance_walking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance walking',
+      'icon': 'mdi:walk',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_walking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_gps_accuracy]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title GPS accuracy',
+      'icon': 'mdi:cellphone-marker',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_gps_accuracy',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '5',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_mode_of_transit]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'enum',
+      'friendly_name': 'Mock Title Mode of transit',
+      'icon': 'mdi:walk',
+      'options': list([
+        <ModeOfTransit.WALKING: 'walking'>,
+        <ModeOfTransit.BIKING: 'biking'>,
+        <ModeOfTransit.DRIVING: 'driving'>,
+      ]),
+      'transitioning': False,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_mode_of_transit',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'driving',
+  })
+# ---
+# name: test_scheduled_actions[no_activity][sensor.mock_title_speed]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'speed',
+      'friendly_name': 'Mock Title Speed',
+      'icon': 'mdi:routes-clock',
+      'speed_recent_avg': 22.144366361096154,
+      'speed_recent_max': 22.144366361096154,
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_speed',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '22.1443663610962',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][entities]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_traveled',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-distance',
+      'original_name': 'Distance traveled',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_traveled',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_traveled',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_adjustments',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-plus',
+      'original_name': 'Distance adjustments',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_adjustments',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_adjustments',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_walking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Distance walking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_walking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_walking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_biking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:bike',
+      'original_name': 'Distance biking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_biking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_biking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_driving',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:car-convertible',
+      'original_name': 'Distance driving',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_driving',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_driving',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_speed',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.SPEED: 'speed'>,
+      'original_icon': 'mdi:routes-clock',
+      'original_name': 'Speed',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'speed',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_speed',
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          <ModeOfTransit.WALKING: 'walking'>,
+          <ModeOfTransit.BIKING: 'biking'>,
+          <ModeOfTransit.DRIVING: 'driving'>,
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_mode_of_transit',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': <SensorDeviceClass.ENUM: 'enum'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Mode of transit',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'mode_of_transit',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_mode_of_transit',
+      'unit_of_measurement': None,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_gps_accuracy',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:cellphone-marker',
+      'original_name': 'GPS accuracy',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'gps_accuracy',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_gps_accuracy',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_updates',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': 'mdi:numeric-positive-1',
+      'original_name': 'Distance updates',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_updates',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_updates',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_distance_adjustments]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance adjustments',
+      'icon': 'mdi:map-marker-plus',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_adjustments',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.0',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_distance_biking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance biking',
+      'icon': 'mdi:bike',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_biking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_distance_driving]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance driving',
+      'icon': 'mdi:car-convertible',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0.0,
+      'trip_distance': 0.5748090627397198,
+      'trip_start': HAFakeDatetime(2025, 5, 20, 10, 52, 18, 726245, tzinfo=datetime.timezone.utc),
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_driving',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.57480906273972',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_distance_traveled]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 0.0,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+      'speed': 19.224120629001614,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': 1.1148064861193794,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.57480906273972',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_distance_updates]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'friendly_name': 'Mock Title Distance updates',
+      'icon': 'mdi:numeric-positive-1',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_updates',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '2',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_distance_walking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance walking',
+      'icon': 'mdi:walk',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_walking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_gps_accuracy]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title GPS accuracy',
+      'icon': 'mdi:cellphone-marker',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_gps_accuracy',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '5',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_mode_of_transit]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'enum',
+      'friendly_name': 'Mock Title Mode of transit',
+      'icon': 'mdi:walk',
+      'options': list([
+        <ModeOfTransit.WALKING: 'walking'>,
+        <ModeOfTransit.BIKING: 'biking'>,
+        <ModeOfTransit.DRIVING: 'driving'>,
+      ]),
+      'transitioning': False,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_mode_of_transit',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'driving',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_no_reload][sensor.mock_title_speed]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'speed',
+      'friendly_name': 'Mock Title Speed',
+      'icon': 'mdi:routes-clock',
+      'speed_recent_avg': 20.684243495048882,
+      'speed_recent_max': 19.224120629001614,
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_speed',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '19.2241206290016',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][entities]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_traveled',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-distance',
+      'original_name': 'Distance traveled',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_traveled',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_traveled',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_adjustments',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-plus',
+      'original_name': 'Distance adjustments',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_adjustments',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_adjustments',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_walking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Distance walking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_walking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_walking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_biking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:bike',
+      'original_name': 'Distance biking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_biking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_biking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_driving',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:car-convertible',
+      'original_name': 'Distance driving',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_driving',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_driving',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_speed',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.SPEED: 'speed'>,
+      'original_icon': 'mdi:routes-clock',
+      'original_name': 'Speed',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'speed',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_speed',
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          <ModeOfTransit.WALKING: 'walking'>,
+          <ModeOfTransit.BIKING: 'biking'>,
+          <ModeOfTransit.DRIVING: 'driving'>,
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_mode_of_transit',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': <SensorDeviceClass.ENUM: 'enum'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Mode of transit',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'mode_of_transit',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_mode_of_transit',
+      'unit_of_measurement': None,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_gps_accuracy',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:cellphone-marker',
+      'original_name': 'GPS accuracy',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'gps_accuracy',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_gps_accuracy',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_updates',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': 'mdi:numeric-positive-1',
+      'original_name': 'Distance updates',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_updates',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_updates',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_distance_adjustments]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance adjustments',
+      'icon': 'mdi:map-marker-plus',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_adjustments',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.0',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_distance_biking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance biking',
+      'icon': 'mdi:bike',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_biking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_distance_driving]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance driving',
+      'icon': 'mdi:car-convertible',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0.0,
+      'trip_distance': 0.5748090627397198,
+      'trip_start': HAFakeDatetime(2025, 5, 20, 10, 52, 18, 726245, tzinfo=datetime.timezone.utc),
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_driving',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.57480906273972',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_distance_traveled]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 0.0,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+      'speed': 19.224120629001614,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': 1.1148064861193794,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.57480906273972',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_distance_updates]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'friendly_name': 'Mock Title Distance updates',
+      'icon': 'mdi:numeric-positive-1',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_updates',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '2',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_distance_walking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance walking',
+      'icon': 'mdi:walk',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_walking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_gps_accuracy]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title GPS accuracy',
+      'icon': 'mdi:cellphone-marker',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_gps_accuracy',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '5',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_mode_of_transit]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'enum',
+      'friendly_name': 'Mock Title Mode of transit',
+      'icon': 'mdi:walk',
+      'options': list([
+        <ModeOfTransit.WALKING: 'walking'>,
+        <ModeOfTransit.BIKING: 'biking'>,
+        <ModeOfTransit.DRIVING: 'driving'>,
+      ]),
+      'transitioning': False,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_mode_of_transit',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'driving',
+  })
+# ---
+# name: test_scheduled_actions[statistics_update_reload_for_speed][sensor.mock_title_speed]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'speed',
+      'friendly_name': 'Mock Title Speed',
+      'icon': 'mdi:routes-clock',
+      'speed_recent_avg': 20.684243495048882,
+      'speed_recent_max': None,
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_speed',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '19.2241206290016',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][entities]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_traveled',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-distance',
+      'original_name': 'Distance traveled',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_traveled',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_traveled',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_adjustments',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-plus',
+      'original_name': 'Distance adjustments',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_adjustments',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_adjustments',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_walking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Distance walking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_walking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_walking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_biking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:bike',
+      'original_name': 'Distance biking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_biking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_biking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_driving',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:car-convertible',
+      'original_name': 'Distance driving',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_driving',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_driving',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_speed',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.SPEED: 'speed'>,
+      'original_icon': 'mdi:routes-clock',
+      'original_name': 'Speed',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'speed',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_speed',
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          <ModeOfTransit.WALKING: 'walking'>,
+          <ModeOfTransit.BIKING: 'biking'>,
+          <ModeOfTransit.DRIVING: 'driving'>,
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_mode_of_transit',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': <SensorDeviceClass.ENUM: 'enum'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Mode of transit',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'mode_of_transit',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_mode_of_transit',
+      'unit_of_measurement': None,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_gps_accuracy',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:cellphone-marker',
+      'original_name': 'GPS accuracy',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'gps_accuracy',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_gps_accuracy',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_updates',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': 'mdi:numeric-positive-1',
+      'original_name': 'Distance updates',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_updates',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_updates',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_distance_adjustments]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance adjustments',
+      'icon': 'mdi:map-marker-plus',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_adjustments',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.0',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_distance_biking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance biking',
+      'icon': 'mdi:bike',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_biking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_distance_driving]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance driving',
+      'icon': 'mdi:car-convertible',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0.0,
+      'trip_distance': 0.2874031193026376,
+      'trip_start': HAFakeDatetime(2025, 5, 20, 10, 52, 18, 726245, tzinfo=datetime.timezone.utc),
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_driving',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.287403119302638',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_distance_traveled]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 0.0,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': None,
+      'speed': None,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': None,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0.287403119302638',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_distance_updates]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'friendly_name': 'Mock Title Distance updates',
+      'icon': 'mdi:numeric-positive-1',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_updates',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '1',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_distance_walking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance walking',
+      'icon': 'mdi:walk',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'trip_adjustments': 0,
+      'trip_distance': 0,
+      'trip_start': None,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_walking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '0',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_gps_accuracy]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title GPS accuracy',
+      'icon': 'mdi:cellphone-marker',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_gps_accuracy',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '5',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_mode_of_transit]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'enum',
+      'friendly_name': 'Mock Title Mode of transit',
+      'icon': 'mdi:walk',
+      'options': list([
+        <ModeOfTransit.WALKING: 'walking'>,
+        <ModeOfTransit.BIKING: 'biking'>,
+        <ModeOfTransit.DRIVING: 'driving'>,
+      ]),
+      'transitioning': False,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_mode_of_transit',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unknown',
+  })
+# ---
+# name: test_scheduled_actions[updates_stalled][sensor.mock_title_speed]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'speed',
+      'friendly_name': 'Mock Title Speed',
+      'icon': 'mdi:routes-clock',
+      'speed_recent_avg': None,
+      'speed_recent_max': None,
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_speed',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unknown',
+  })
+# ---
+# name: test_standard_setup[device]
+  DeviceRegistryEntrySnapshot({
+    'area_id': None,
+    'config_entries': <ANY>,
+    'config_entries_subentries': <ANY>,
+    'configuration_url': None,
+    'connections': set({
+    }),
+    'disabled_by': None,
+    'entry_type': <DeviceEntryType.SERVICE: 'service'>,
+    'hw_version': None,
+    'id': <ANY>,
+    'identifiers': set({
+      tuple(
+        'movement',
+        'mock-entry-id',
+      ),
+    }),
+    'is_new': False,
+    'labels': set({
+    }),
+    'manufacturer': None,
+    'model': None,
+    'model_id': None,
+    'name': 'Mock Title',
+    'name_by_user': None,
+    'primary_config_entry': <ANY>,
+    'serial_number': None,
+    'suggested_area': None,
+    'sw_version': None,
+    'via_device_id': None,
+  })
+# ---
+# name: test_standard_setup[entities]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_traveled',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-distance',
+      'original_name': 'Distance traveled',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_traveled',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_traveled',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_adjustments',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:map-marker-plus',
+      'original_name': 'Distance adjustments',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_adjustments',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_adjustments',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_walking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Distance walking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_walking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_walking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_biking',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:bike',
+      'original_name': 'Distance biking',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_biking',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_biking',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_driving',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:car-convertible',
+      'original_name': 'Distance driving',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_driving',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_driving',
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_speed',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.SPEED: 'speed'>,
+      'original_icon': 'mdi:routes-clock',
+      'original_name': 'Speed',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'speed',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_speed',
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          <ModeOfTransit.WALKING: 'walking'>,
+          <ModeOfTransit.BIKING: 'biking'>,
+          <ModeOfTransit.DRIVING: 'driving'>,
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_mode_of_transit',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': <SensorDeviceClass.ENUM: 'enum'>,
+      'original_icon': 'mdi:walk',
+      'original_name': 'Mode of transit',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'mode_of_transit',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_mode_of_transit',
+      'unit_of_measurement': None,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': None,
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_gps_accuracy',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+        'sensor': dict({
+          'suggested_display_precision': 3,
+        }),
+      }),
+      'original_device_class': <SensorDeviceClass.DISTANCE: 'distance'>,
+      'original_icon': 'mdi:cellphone-marker',
+      'original_name': 'GPS accuracy',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'gps_accuracy',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_gps_accuracy',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    EntityRegistryEntrySnapshot({
+      'aliases': set({
+      }),
+      'area_id': None,
+      'capabilities': dict({
+        'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'sensor',
+      'entity_category': None,
+      'entity_id': 'sensor.mock_title_distance_updates',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': 'mdi:numeric-positive-1',
+      'original_name': 'Distance updates',
+      'platform': 'movement',
+      'previous_unique_id': None,
+      'supported_features': 0,
+      'translation_key': 'distance_updates',
+      'unique_id': 'mock-entry-id_person.akio_toyoda_distance_updates',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
+# name: test_standard_setup[sensor.mock_title_distance_adjustments]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance adjustments',
+      'icon': 'mdi:map-marker-plus',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_adjustments',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_distance_biking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance biking',
+      'icon': 'mdi:bike',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_biking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_distance_driving]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance driving',
+      'icon': 'mdi:car-convertible',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_driving',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_distance_traveled]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_distance_updates]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'friendly_name': 'Mock Title Distance updates',
+      'icon': 'mdi:numeric-positive-1',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_updates',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_distance_walking]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance walking',
+      'icon': 'mdi:walk',
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_walking',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_gps_accuracy]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title GPS accuracy',
+      'icon': 'mdi:cellphone-marker',
+      'unit_of_measurement': <UnitOfLength.METERS: 'm'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_gps_accuracy',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_mode_of_transit]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'enum',
+      'friendly_name': 'Mock Title Mode of transit',
+      'icon': 'mdi:walk',
+      'options': list([
+        <ModeOfTransit.WALKING: 'walking'>,
+        <ModeOfTransit.BIKING: 'biking'>,
+        <ModeOfTransit.DRIVING: 'driving'>,
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_mode_of_transit',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_standard_setup[sensor.mock_title_speed]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'device_class': 'speed',
+      'friendly_name': 'Mock Title Speed',
+      'icon': 'mdi:routes-clock',
+      'unit_of_measurement': <UnitOfSpeed.KILOMETERS_PER_HOUR: 'km/h'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_speed',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---

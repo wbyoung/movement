@@ -1,0 +1,1386 @@
+# serializer version: 1
+# name: test_data_calculation[biking_after_driving_but_threshold_is_overcome][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 84.25845,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.BIKING: 'biking'>,
+    'speed': 11.96509,
+  })
+# ---
+# name: test_data_calculation[biking_after_driving_but_threshold_is_overcome][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 24, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[biking_after_driving_but_threshold_is_overcome][transition]
+  list([
+    dict({
+      'adjustments': 0,
+      'distance': 0.391,
+    }),
+  ])
+# ---
+# name: test_data_calculation[biking_after_driving_but_threshold_not_overcome][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 84.25845,
+    'ignore_count': 0,
+    'mode_of_transit': 'driving',
+    'speed': 11.96509,
+  })
+# ---
+# name: test_data_calculation[biking_after_driving_but_threshold_not_overcome][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 24, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[biking_after_driving_but_threshold_not_overcome][transition]
+  list([
+    dict({
+      'adjustments': <AbsentNone._singleton: None>,
+      'distance': 0.75845,
+    }),
+  ])
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_1][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.7,
+    'ignore_count': 1,
+    'mode_of_transit': 'driving',
+    'speed': 18.34,
+  })
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_1][history]
+  list([
+    dict({
+      'accuracy': 3,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': True,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+    dict({
+      'accuracy': 2,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30709,
+        'longitude': -97.72808,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_1][transition]
+  None
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_2][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.7,
+    'ignore_count': 2,
+    'mode_of_transit': 'driving',
+    'speed': 18.34,
+  })
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_2][history]
+  list([
+    dict({
+      'accuracy': 4,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 653451, tzinfo=UTC-07:00),
+      'debounce': True,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30717,
+        'longitude': -97.72806,
+      }),
+    }),
+    dict({
+      'accuracy': 2,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30709,
+        'longitude': -97.72808,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_2][transition]
+  None
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_a_minute_ago][data]
+  dict({
+    'adjustments': 0.09514,
+    'change_count': 1,
+    'distance': 84.35623,
+    'ignore_count': 2,
+    'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+    'speed': 39.09129,
+  })
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_a_minute_ago][history]
+  list([
+    dict({
+      'accuracy': 13,
+      'at': datetime.datetime(2024, 9, 5, 11, 36, 17, 384754, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 2,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30709,
+        'longitude': -97.72808,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[clustered_updates_due_to_app_race_condition_a_minute_ago][transition]
+  None
+# ---
+# name: test_data_calculation[distance_updates_lagging][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.5,
+    'ignore_count': 0,
+    'mode_of_transit': None,
+    'speed': None,
+  })
+# ---
+# name: test_data_calculation[distance_updates_lagging][history]
+  list([
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[distance_updates_lagging][transition]
+  None
+# ---
+# name: test_data_calculation[driving_after_slow_start_categorized_as_biking][data]
+  dict({
+    'adjustments': 0.42753,
+    'change_count': 1,
+    'distance': 84.68598,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+    'speed': 56.6501,
+  })
+# ---
+# name: test_data_calculation[driving_after_slow_start_categorized_as_biking][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 21, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[driving_after_slow_start_categorized_as_biking][transition]
+  None
+# ---
+# name: test_data_calculation[event_for_manual_adjust][data]
+  dict({
+    'adjustments': 0.1,
+    'change_count': 1,
+    'distance': 83.8,
+    'ignore_count': 0,
+    'mode_of_transit': 'driving',
+    'speed': 0,
+  })
+# ---
+# name: test_data_calculation[event_for_manual_adjust][history]
+  list([
+  ])
+# ---
+# name: test_data_calculation[event_for_manual_adjust][transition]
+  None
+# ---
+# name: test_data_calculation[event_for_manual_adjust_while_in_transition][data]
+  dict({
+    'adjustments': 0.1125,
+    'change_count': 1,
+    'distance': 83.8125,
+    'ignore_count': 0,
+    'mode_of_transit': 'driving',
+    'speed': 0,
+  })
+# ---
+# name: test_data_calculation[event_for_manual_adjust_while_in_transition][history]
+  list([
+  ])
+# ---
+# name: test_data_calculation[event_for_manual_adjust_while_in_transition][transition]
+  list([
+    dict({
+      'adjustments': 0.0125,
+      'distance': 0.1125,
+    }),
+  ])
+# ---
+# name: test_data_calculation[frequent_updates_recently_while_driving][data]
+  dict({
+    'adjustments': 0.01957,
+    'change_count': 1,
+    'distance': 83.67614,
+    'ignore_count': 0,
+    'mode_of_transit': 'driving',
+    'speed': 9.22492,
+  })
+# ---
+# name: test_data_calculation[frequent_updates_recently_while_driving][history]
+  list([
+    dict({
+      'accuracy': 28,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+    dict({
+      'accuracy': 31,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 2, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 12,
+      'at': datetime.datetime(2024, 9, 5, 11, 34, 47, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 25,
+      'at': datetime.datetime(2024, 9, 5, 11, 34, 6, 283742, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 19, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[frequent_updates_recently_while_driving][transition]
+  None
+# ---
+# name: test_data_calculation[from_home_to_park_after_updates_resumed_update2][data]
+  dict({
+    'adjustments': 0.09481,
+    'change_count': 1,
+    'distance': 84.35325,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+    'speed': 26.20397,
+  })
+# ---
+# name: test_data_calculation[from_home_to_park_after_updates_resumed_update2][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 22, 3, 381737, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_home_to_park_after_updates_resumed_update2][transition]
+  None
+# ---
+# name: test_data_calculation[from_home_to_park_after_updates_stalled_3hr][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 84.25845,
+    'ignore_count': 0,
+    'mode_of_transit': None,
+    'speed': None,
+  })
+# ---
+# name: test_data_calculation[from_home_to_park_after_updates_stalled_3hr][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 21, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_home_to_park_after_updates_stalled_3hr][transition]
+  list([
+    dict({
+      'adjustments': <AbsentNone._singleton: None>,
+      'distance': 0.75845,
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_home_to_park_in_15_min][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 84.25845,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 3.0741,
+  })
+# ---
+# name: test_data_calculation[from_home_to_park_in_15_min][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_home_to_park_in_15_min][transition]
+  None
+# ---
+# name: test_data_calculation[from_home_to_park_in_15_min_while_driving_slowly][data]
+  dict({
+    'adjustments': 0.09481,
+    'change_count': 1,
+    'distance': 84.35325,
+    'ignore_count': 0,
+    'mode_of_transit': 'driving',
+    'speed': 3.0741,
+  })
+# ---
+# name: test_data_calculation[from_home_to_park_in_15_min_while_driving_slowly][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_home_to_park_in_15_min_while_driving_slowly][transition]
+  None
+# ---
+# name: test_data_calculation[from_home_to_park_in_1_min][data]
+  dict({
+    'adjustments': 0.22753,
+    'change_count': 1,
+    'distance': 84.48598,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+    'speed': 56.6501,
+  })
+# ---
+# name: test_data_calculation[from_home_to_park_in_1_min][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 21, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_home_to_park_in_1_min][transition]
+  None
+# ---
+# name: test_data_calculation[from_home_to_park_in_4_min][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 84.25845,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.BIKING: 'biking'>,
+    'speed': 11.96509,
+  })
+# ---
+# name: test_data_calculation[from_home_to_park_in_4_min][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 24, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_home_to_park_in_4_min][transition]
+  None
+# ---
+# name: test_data_calculation[from_park_to_home_after_updates_resumed][data]
+  dict({
+    'adjustments': 0.38956,
+    'change_count': 1,
+    'distance': 85.406,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+    'speed': 26.20397,
+  })
+# ---
+# name: test_data_calculation[from_park_to_home_after_updates_resumed][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 22, 3, 381737, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[from_park_to_home_after_updates_resumed][transition]
+  list([
+    dict({
+      'adjustments': 0.09475,
+      'distance': 0.85275,
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_improved_gps_accuracy][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 84.25845,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 3.0741,
+  })
+# ---
+# name: test_data_calculation[location_update_has_improved_gps_accuracy][history]
+  list([
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+    dict({
+      'accuracy': 57,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_improved_gps_accuracy][transition]
+  None
+# ---
+# name: test_data_calculation[location_update_has_improved_gps_accuracy_but_state_lacks_history][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.5,
+    'ignore_count': 1,
+    'mode_of_transit': 'walking',
+    'speed': 0.01,
+  })
+# ---
+# name: test_data_calculation[location_update_has_improved_gps_accuracy_but_state_lacks_history][history]
+  list([
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_improved_gps_accuracy_but_state_lacks_history][transition]
+  None
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.65657,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 2.65905,
+  })
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy][history]
+  list([
+    dict({
+      'accuracy': 150,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 59, 281834, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+    dict({
+      'accuracy': 20,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 1, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 12,
+      'at': datetime.datetime(2024, 9, 5, 11, 1, 19, 293840, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy][transition]
+  None
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy_and_expired_history][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.65657,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 0.01,
+  })
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy_and_expired_history][history]
+  list([
+    dict({
+      'accuracy': 150,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 59, 281834, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy_and_expired_history][transition]
+  list([
+    dict({
+      'adjustments': <AbsentNone._singleton: None>,
+      'distance': 0.15657,
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy_and_worse_history][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.65657,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 0.01,
+  })
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy_and_worse_history][history]
+  list([
+    dict({
+      'accuracy': 150,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 59, 281834, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+    dict({
+      'accuracy': 620,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 1, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_moderate_gps_accuracy_and_worse_history][transition]
+  list([
+    dict({
+      'adjustments': <AbsentNone._singleton: None>,
+      'distance': 0.15657,
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_poor_gps_accuracy][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.5,
+    'ignore_count': 1,
+    'mode_of_transit': 'walking',
+    'speed': 0.01,
+  })
+# ---
+# name: test_data_calculation[location_update_has_poor_gps_accuracy][history]
+  list([
+    dict({
+      'accuracy': 1414,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': 'inaccurate',
+      'location': <AbsentNone._singleton: None>,
+    }),
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 1, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_has_poor_gps_accuracy][transition]
+  None
+# ---
+# name: test_data_calculation[location_update_while_driving_has_moderate_gps_accuracy_and_worse_history][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.65657,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+    'speed': 18.2,
+  })
+# ---
+# name: test_data_calculation[location_update_while_driving_has_moderate_gps_accuracy_and_worse_history][history]
+  list([
+    dict({
+      'accuracy': 150,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 59, 281834, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+    dict({
+      'accuracy': 620,
+      'at': datetime.datetime(2024, 9, 5, 11, 20, 1, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[location_update_while_driving_has_moderate_gps_accuracy_and_worse_history][transition]
+  list([
+    dict({
+      'adjustments': <AbsentNone._singleton: None>,
+      'distance': 0.15657,
+    }),
+  ])
+# ---
+# name: test_data_calculation[movement_along_highway][data]
+  dict({
+    'adjustments': 44.86539,
+    'change_count': 1,
+    'distance': 89.85768,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.DRIVING: 'driving'>,
+    'speed': 108.42231,
+  })
+# ---
+# name: test_data_calculation[movement_along_highway][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 24, 1, 391233, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.32961,
+        'longitude': -97.63778,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[movement_along_highway][transition]
+  None
+# ---
+# name: test_data_calculation[nearly_immediate_location_update_has_improved_gps_accuracy][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.65657,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 0.58715,
+  })
+# ---
+# name: test_data_calculation[nearly_immediate_location_update_has_improved_gps_accuracy][history]
+  list([
+    dict({
+      'accuracy': 28,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+    dict({
+      'accuracy': 31,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 2, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 12,
+      'at': datetime.datetime(2024, 9, 5, 11, 34, 47, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 19, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[nearly_immediate_location_update_has_improved_gps_accuracy][transition]
+  None
+# ---
+# name: test_data_calculation[ord_to_sea][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 2846.09468,
+    'ignore_count': 0,
+    'mode_of_transit': None,
+    'speed': None,
+  })
+# ---
+# name: test_data_calculation[ord_to_sea][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 16, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 47.44837,
+        'longitude': -122.31117,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[ord_to_sea][transition]
+  None
+# ---
+# name: test_data_calculation[person_without_gps][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.5,
+    'ignore_count': 1,
+    'mode_of_transit': 'walking',
+    'speed': 2.23,
+  })
+# ---
+# name: test_data_calculation[person_without_gps][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': 'no_location',
+      'location': <AbsentNone._singleton: None>,
+    }),
+  ])
+# ---
+# name: test_data_calculation[person_without_gps][transition]
+  None
+# ---
+# name: test_data_calculation[rapid_updates_entering_home_zone_after_being_at_neighbors_30_min_ago][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.69016,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 0.31294,
+  })
+# ---
+# name: test_data_calculation[rapid_updates_entering_home_zone_after_being_at_neighbors_30_min_ago][history]
+  list([
+    dict({
+      'accuracy': 7,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 481234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 8,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 2, 384843, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31425,
+        'longitude': -97.72271,
+      }),
+    }),
+    dict({
+      'accuracy': 4,
+      'at': datetime.datetime(2024, 9, 5, 11, 5, 6, 283943, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[rapid_updates_entering_home_zone_after_being_at_neighbors_30_min_ago][transition]
+  None
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_dropping_to_biking_pace][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.5,
+    'ignore_count': 0,
+    'mode_of_transit': 'driving',
+    'speed': 10,
+  })
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_dropping_to_biking_pace][history]
+  list([
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_dropping_to_biking_pace][transition]
+  list([
+  ])
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_dropping_to_walking_pace][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.5,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 4,
+  })
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_dropping_to_walking_pace][history]
+  list([
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_dropping_to_walking_pace][transition]
+  None
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_expired][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 0,
+    'distance': 83.5,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.BIKING: 'biking'>,
+    'speed': 10,
+  })
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_expired][history]
+  list([
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_expired][transition]
+  None
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_higher_after_driving][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.65657,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 1.95581,
+  })
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_higher_after_driving][history]
+  list([
+    dict({
+      'accuracy': inf,
+      'at': datetime.datetime(2024, 9, 5, 11, 25, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31326,
+        'longitude': -97.72244,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[recent_speed_max_or_avg_higher_after_driving][transition]
+  None
+# ---
+# name: test_data_calculation[reset][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 0,
+    'ignore_count': 0,
+    'mode_of_transit': None,
+    'speed': None,
+  })
+# ---
+# name: test_data_calculation[reset][history]
+  list([
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.30714,
+        'longitude': -97.72812,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[reset][transition]
+  None
+# ---
+# name: test_data_calculation[small_distance_changes_walking_after_driving][data]
+  dict({
+    'adjustments': 0,
+    'change_count': 1,
+    'distance': 83.70677,
+    'ignore_count': 0,
+    'mode_of_transit': <ModeOfTransit.WALKING: 'walking'>,
+    'speed': 1.245,
+  })
+# ---
+# name: test_data_calculation[small_distance_changes_walking_after_driving][history]
+  list([
+    dict({
+      'accuracy': 28,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72411,
+      }),
+    }),
+    dict({
+      'accuracy': 31,
+      'at': datetime.datetime(2024, 9, 5, 11, 35, 2, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 27,
+      'at': datetime.datetime(2024, 9, 5, 11, 34, 47, 293842, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 25,
+      'at': datetime.datetime(2024, 9, 5, 11, 32, 6, 283742, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.31298,
+        'longitude': -97.72404,
+      }),
+    }),
+    dict({
+      'accuracy': 6,
+      'at': datetime.datetime(2024, 9, 5, 11, 12, 7, 381234, tzinfo=UTC-07:00),
+      'debounce': <AbsentFalse._singleton: False>,
+      'ignore': <AbsentNone._singleton: None>,
+      'location': dict({
+        'latitude': 30.32193,
+        'longitude': -97.70694,
+      }),
+    }),
+  ])
+# ---
+# name: test_data_calculation[small_distance_changes_walking_after_driving][transition]
+  list([
+    dict({
+      'adjustments': <AbsentNone._singleton: None>,
+      'distance': 0.00677,
+    }),
+  ])
+# ---
+# name: test_data_calculation[type_biking_trigger_transition_biking][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_biking_trigger_transition_biking_2][data]
+  dict({
+    'distance': 22.2,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.4,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_biking_trigger_transition_biking_3][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_biking_trigger_transition_driving][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_biking_walking][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_biking_walking_to_biking][data]
+  dict({
+    'distance': 32.12,
+    'trip_adjustments': 0.4,
+    'trip_distance': 10.02,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_driving_to_walking][data]
+  dict({
+    'distance': 32.12,
+    'trip_adjustments': 1.5,
+    'trip_distance': 25.32,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_trigger_transition_driving][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_trigger_transition_driving_2][data]
+  dict({
+    'distance': 22.2,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.4,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_trigger_transition_driving_3][data]
+  dict({
+    'distance': 22.2,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.4,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_trigger_transition_driving_4][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_trigger_transition_walking_to_driving][data]
+  dict({
+    'distance': 32.32,
+    'trip_adjustments': 0.4,
+    'trip_distance': 10.22,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_walking][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_driving_walking_to_driving][data]
+  dict({
+    'distance': 32.12,
+    'trip_adjustments': 0.4,
+    'trip_distance': 10.02,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 35, 7, 381234, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_trigger_id_reset][data]
+  dict({
+    'distance': 0,
+    'trip_adjustments': None,
+    'trip_distance': None,
+    'trip_start': None,
+  })
+# ---
+# name: test_data_calculation[type_walking_trigger_transition_driving][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_trigger_transition_walking][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_trigger_transition_walking_2][data]
+  dict({
+    'distance': 22.2,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.4,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_trigger_transition_walking_3][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_trigger_transition_walking_4][data]
+  dict({
+    'distance': 22.2,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.4,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_walking][data]
+  dict({
+    'distance': 22.43,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.63,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_walking_0_0_reset][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_walking_0_reset][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_walking_to_biking][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---
+# name: test_data_calculation[type_walking_walking_to_driving][data]
+  dict({
+    'distance': 22.1,
+    'trip_adjustments': 1.1,
+    'trip_distance': 15.3,
+    'trip_start': datetime.datetime(2024, 9, 5, 11, 20, 19, 183472, tzinfo=UTC-07:00),
+  })
+# ---

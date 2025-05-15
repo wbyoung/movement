@@ -1,0 +1,56 @@
+description: >
+  When an several updates are received within a few seconds around home (for
+  entering the home zone) after being at the neighbors 30min ago, it uses the
+  history to determine a usable entry, ignoring the update that is within a few
+  seconds (which would be valid in terms of distance moved overcoming GPS
+  accuracy), and using the value older location from the neighbor's house to
+  calculate the `speed` & `mode_of_transit`.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 83.5
+  speed: 2.23
+  mode_of_transit: walking
+  history:
+  - at: '2024-09-05 11:35:02.384843-07:00'
+    accuracy: 8
+    location: *between_neighbors_location
+  - at: '2024-09-05 11:05:06.283943-07:00'
+    accuracy: 4
+    location: *neighbors_house_location
+  last_changed: '2024-09-05T11:35:02.384843-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:35:07.481234-07:00'
+  from_state:
+    attributes:
+      <<: *between_neighbors_location
+      gps_accuracy: 8
+  to_state:
+    attributes:
+      <<: *home_location
+      gps_accuracy: 7
+result:
+  distance: 83.690
+  speed: 0.313
+  mode_of_transit: walking
+  transition:
+  history:
+  - at: '2024-09-05 11:35:07.481234-07:00' # kept for recency
+    accuracy: 7
+    location: *home_location
+  - at: '2024-09-05 11:35:02.384843-07:00' # kept for recency
+    accuracy: 8
+    location: *between_neighbors_location
+  - at: '2024-09-05 11:05:06.283943-07:00' # kept for accuracy
+    accuracy: 4
+    location: *neighbors_house_location
+  adjustments: 0
+  ignore_count: 0

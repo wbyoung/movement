@@ -1,0 +1,45 @@
+# unlikely scenario, but there was no need to add more locations, so this
+# continues from the prior test, but just turning around and heading home.
+description: >
+  When moving from the nearby park to home with an incomplete item in
+  `transition` from 2min ago, it calculates a driving speed, calculates the
+  adjustments on the distances in `transition`, increments the state by the
+  distance traveled since the last update plus the adjustments for that distance
+  and the adjustments from the `transition` object, and updates the
+  `adjustments` attribute to include those same adjustments.
+config_entry:
+  trip_addition: 0.2
+  multipliers:
+    neighborhood: 1.125
+    local: 1.3
+    highway: 0.95
+coordinator:
+  distance: 84.258
+  speed:
+  mode_of_transit:
+  transition:
+  - distance: 0.758
+  last_changed: '2024-09-05T11:20:19.183472-07:00'
+  statistics:
+    speed_recent_avg:
+    speed_recent_max:
+change:
+  id: add_distance
+  now: '2024-09-05T11:22:03.381737-07:00'
+  from_state:
+    attributes: *park_location
+  to_state:
+    attributes: *home_location
+result:
+  distance: 85.406
+  speed: 26.204
+  mode_of_transit: driving
+  transition:
+  - distance: 0.853
+    adjustments: 0.095
+  history:
+  - at: '2024-09-05 11:22:03.381737-07:00'
+    accuracy: 1.0e+99
+    location: *home_location
+  adjustments: 0.39
+  ignore_count: 0

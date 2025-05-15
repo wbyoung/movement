@@ -1,0 +1,67 @@
+# serializer version: 1
+# name: test_add_distance_service[adjustments_only]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 3.1,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': None,
+      'speed': 0,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': None,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '3.1',
+  })
+# ---
+# name: test_add_distance_service[all_attrs]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 3.1,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': <ModeOfTransit.BIKING: 'biking'>,
+      'speed': 0,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': None,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '4.3',
+  })
+# ---
+# name: test_add_distance_service[distance_only]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'adjustments': 0,
+      'device_class': 'distance',
+      'friendly_name': 'Mock Title Distance traveled',
+      'icon': 'mdi:map-marker-distance',
+      'ignore_count': 0,
+      'mode_of_transit': None,
+      'speed': 0,
+      'state_class': <SensorStateClass.TOTAL_INCREASING: 'total_increasing'>,
+      'unit_of_measurement': <UnitOfLength.KILOMETERS: 'km'>,
+      'update_rate': None,
+    }),
+    'context': <ANY>,
+    'entity_id': 'sensor.mock_title_distance_traveled',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': '1.2',
+  })
+# ---
