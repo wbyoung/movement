@@ -1,7 +1,9 @@
 """Fixtures for testing."""
 
+import logging
 from pathlib import Path
 from typing import Generator
+import sys
 
 from freezegun.api import FrozenDateTimeFactory
 from homeassistant.core import HomeAssistant
@@ -23,6 +25,19 @@ from custom_components.movement.const import (
 from . import MOCK_UTC_NOW, MockNow, setup_integration
 from .syrupy import MovementSnapshotExtension
 
+def pytest_configure(config) -> None:
+    # remove the `sys.stderr` log handler when verbose logging and capture has
+    # not been disabled. `pytest_homeassistant_custom_component` will enable
+    # debug logging during `pytest_configure` when verbose logging is enabled.
+    # there's no reason to send the logger's output to `stderr``, though,
+    # because the calls to the logger will be captured and reported along with
+    # the tests.
+    if config.getoption("verbose") > 0 and config.getoption("capture") != "no":
+        logger = logging.getLogger()
+
+        for handler in logger.handlers:
+            if handler.stream == sys.stderr:
+                logger.removeHandler(handler)
 
 @pytest.fixture(autouse=True)
 def auto_enable_custom_integrations(enable_custom_integrations):
