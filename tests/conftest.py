@@ -1,5 +1,6 @@
 """Fixtures for testing."""
 
+import logging
 from pathlib import Path
 from typing import Generator
 
@@ -22,6 +23,26 @@ from custom_components.movement.const import (
 
 from . import MOCK_UTC_NOW, MockNow, setup_integration
 from .syrupy import MovementSnapshotExtension
+
+_LOGGER = logging.getLogger(__name__)
+
+
+def pytest_configure(config) -> None:
+    is_capturing = config.getoption("capture") != "no"
+
+    if not is_capturing and config.pluginmanager.hasplugin("logging"):
+        _LOGGER.warning(
+            "pytest run with `-s/--capture=no` and the logging plugin enabled "
+            "run with `-p no:logging` to disable all sources of log capturing."
+        )
+
+    # `pytest_homeassistant_custom_component` calls `logging.basicConfig` which
+    # creates the `stderr` stream handler. in most cases that will result in
+    # logs being duplicated, reported in the "stderr" and "logging" capture
+    # sections. force reconfiguration, removing handlers when not running with
+    # the `-s/--capture=no` flag.
+    if is_capturing:
+        logging.basicConfig(level=logging.INFO, handlers=[], force=True)
 
 
 @pytest.fixture(autouse=True)
