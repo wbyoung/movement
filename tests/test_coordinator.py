@@ -53,7 +53,6 @@ async def test_data_calculation(
     snapshot: SnapshotAssertion,
 ) -> None:
     """Test sensors when tracked device changes state."""
-
     mock_config_entry = MockConfigEntry(
         domain=DOMAIN,
         unique_id="mock-unique-id",
@@ -83,11 +82,12 @@ async def test_data_calculation(
         history=[*map(HistoryEntry.from_dict, history)],
         transition=(transition and [*map(TransitionEntry.from_dict, transition)]),
     )
-    coordinator.statistics = StatisticGroup(
-        **{field.name: Mock(spec=Statistic) for field in fields(StatisticGroup)}
-    )
+    statistic_mocks = {
+        field.name: Mock(spec=Statistic) for field in fields(StatisticGroup)
+    }
+    coordinator.statistics = StatisticGroup(**statistic_mocks)
 
-    for mock in coordinator.statistics:
+    for mock in statistic_mocks.values():
         mock.value = None
         mock.next_to_purge_timestamp.return_value = None
 
@@ -97,7 +97,7 @@ async def test_data_calculation(
                 mock = getattr(coordinator.statistics, sensor_key)
                 mock.value = sensor_value
         if key == "last_changed":
-            setattr(coordinator, "last_changed", dt_util.parse_datetime(value))
+            coordinator.last_changed = dt_util.parse_datetime(value)
 
     change = scenario["change"]
     change_type = change["id"]
@@ -108,7 +108,7 @@ async def test_data_calculation(
     if change_type == "add_distance":
         now = dt_util.parse_datetime(change["now"])
         from_state_last_change = dt_util.parse_datetime(
-            scenario.get("coordinator", {}).get("last_changed")
+            scenario.get("coordinator", {}).get("last_changed"),
         )
         from_state = change["from_state"]
         to_state = change["to_state"]
@@ -128,10 +128,12 @@ async def test_data_calculation(
             EventStateChangedData(
                 entity_id="person.akio_toyoda",
                 old_state=State(
-                    "person.akio_toyoda", **({"state": "undefined"} | from_state)
+                    "person.akio_toyoda",
+                    **({"state": "undefined"} | from_state),
                 ),
                 new_state=State(
-                    "person.akio_toyoda", **({"state": "undefined"} | to_state)
+                    "person.akio_toyoda",
+                    **({"state": "undefined"} | to_state),
                 ),
             ),
         )
@@ -144,7 +146,7 @@ async def test_data_calculation(
         await coordinator._async_handle_updates_stalled()
     elif change_type == "add_distance_manually":
         await coordinator.async_perform_service_adjustment(
-            ServiceAdjustment(**change["data"])
+            ServiceAdjustment(**change["data"]),
         )
     elif change_type == "reset":
         await coordinator._async_perform_reset()
@@ -176,7 +178,7 @@ async def test_data_calculation(
         with patch("homeassistant.util.dt.utcnow", return_value=now):
             type_data, mode_type = (
                 coordinator._get_dependent_trigger_entity_config_from_state(
-                    "sensor.toyota_prius_distance"
+                    "sensor.toyota_prius_distance",
                 )
             )
             data = get_updates_for_typed_movement_sensor(
@@ -203,7 +205,7 @@ async def test_data_calculation(
 
         if scenario["additional_setup"] == "mock_cancel_callback":
             cancel_mock = Mock()
-            coordinator._updates_stalled_listener = cast(Any, cancel_mock)
+            coordinator._updates_stalled_listener = cast("Any", cancel_mock)
 
         with patch("homeassistant.helpers.event.async_call_later") as mock:
             coordinator.update = MovementData.from_dict(change["coordinator"])
@@ -220,7 +222,9 @@ async def test_data_calculation(
                 cancel_mock.assert_not_called()
 
         result = {
-            "async_call_later[].args[1]": [call.args[1] for call in mock.call_args_list]
+            "async_call_later[].args[1]": [
+                call.args[1] for call in mock.call_args_list
+            ],
         }
         expectation = (
             {"async_call_later[].args[1]": [expectation]}
@@ -229,7 +233,7 @@ async def test_data_calculation(
         )
     else:
         raise AssertionError(
-            f"Scenario {scenario_fixture} defines unknown change type {change_type} for key `change.id`"
+            f"Scenario {scenario_fixture} defines unknown change type {change_type} for key `change.id`",
         )
 
     coordinator.cancel_all_listeners()
@@ -267,20 +271,21 @@ async def test_data_calculation(
 
 
 _round_floats_matcher = path_type(
-    types=(float,), replacer=lambda data, _: round(data, 5)
+    types=(float,),
+    replacer=lambda data, _: round(data, 5),
 )
 
 
-def _to_yaml_assertable(value: Any, preserve_keys=["location"]):
+def _to_yaml_assertable(value: Any, preserve_keys=("location",)):
     if isinstance(value, bool):
         return value
-    elif isinstance(value, (int, float)):
+    if isinstance(value, int | float):
         if value == HistoryEntry.NO_ACCURACY:
             value = 1e99
         return round(value, 3)
-    elif isinstance(value, dt.datetime):
+    if isinstance(value, dt.datetime):
         return value.isoformat(sep=" ")
-    elif isinstance(value, Mapping):
+    if isinstance(value, Mapping):
         return {
             key: (
                 sub_value
@@ -288,11 +293,14 @@ def _to_yaml_assertable(value: Any, preserve_keys=["location"]):
                 else _to_yaml_assertable(sub_value, preserve_keys)
             )
             for key, sub_value in value.items()
-            if sub_value not in (ABSENT_FALSE, ABSENT_NONE)
+            if sub_value
+            not in (
+                (ABSENT_FALSE, ABSENT_NONE)  # noqa: PLR6201
+            )
         }
-    elif isinstance(value, (list, tuple)):
+    if isinstance(value, list | tuple):
         return [_to_yaml_assertable(item, preserve_keys) for item in value]
-    elif isinstance(value, str):
+    if isinstance(value, str):
         with suppress(ValueError):
             int_value = int(value)
             if str(int_value) == value:
@@ -302,8 +310,7 @@ def _to_yaml_assertable(value: Any, preserve_keys=["location"]):
             if str(float_value) == value:
                 return round(float_value, 3)
         return value
-    else:
-        return value
+    return value
 
 
 def _load_movement_data(data: dict[str, Any]) -> MovementData:
@@ -313,7 +320,7 @@ def _load_movement_data(data: dict[str, Any]) -> MovementData:
         distance=float(state),
         adjustments=attrs.get("adjustments", 0),
         speed=attrs.get("speed"),
-        mode_of_transit=cast(ModeOfTransit, attrs.get("mode_of_transit")),
+        mode_of_transit=cast("ModeOfTransit", attrs.get("mode_of_transit")),
         change_count=0,
         ignore_count=attrs.get("ignore_count", 0),
     )

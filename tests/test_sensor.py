@@ -29,16 +29,14 @@ from . import MockNow, setup_integration
 
 
 @pytest.mark.parametrize(
-    ("changes",),
+    "changes",
     [
-        ([(96.592, {"latitude": 35.053, "longitude": 137.144, "gps_accuracy": 15})],),
-        (
-            [
-                (53.564, {"latitude": 35.053, "longitude": 137.144, "gps_accuracy": 4}),
-                (0, {"latitude": 35.052, "longitude": 137.145, "gps_accuracy": 2}),
-                (0, {"latitude": 35.051, "longitude": 137.146, "gps_accuracy": 3}),
-            ],
-        ),
+        [(96.592, {"latitude": 35.053, "longitude": 137.144, "gps_accuracy": 15})],
+        [
+            (53.564, {"latitude": 35.053, "longitude": 137.144, "gps_accuracy": 4}),
+            (0, {"latitude": 35.052, "longitude": 137.145, "gps_accuracy": 2}),
+            (0, {"latitude": 35.051, "longitude": 137.146, "gps_accuracy": 3}),
+        ],
     ],
     ids=["single_change", "multiple_change_in_one_tick"],
 )
@@ -52,7 +50,6 @@ async def test_change_on_tracked_device(
     entity_registry: er.EntityRegistry,
 ) -> None:
     """Test sensors when tracked device changes state."""
-
     initial_attrs = {
         "friendly_name": "Akio Toyoda",
         "latitude": 35.054,
@@ -109,18 +106,18 @@ RESTORE_STATE_PARAMETRIZE_ARGS = [
             ),
             [
                 HistoryEntry(
-                    at=dt.datetime(2025, 5, 20, 21, 21, 45, 3945),
+                    at=dt.datetime(2025, 5, 20, 21, 21, 45, 3945, tzinfo=dt.UTC),
                     location=Location(latitude=35.0539, longitude=137.1441),
                     accuracy=6,
                 ),
                 HistoryEntry(
-                    at=dt.datetime(2025, 5, 20, 21, 21, 45, 3945),
+                    at=dt.datetime(2025, 5, 20, 21, 21, 45, 3945, tzinfo=dt.UTC),
                     location=Location(latitude=35.0539, longitude=137.1441),
                     accuracy=4,
                     debounce=True,
                 ),
                 HistoryEntry(
-                    at=dt.datetime(2025, 5, 20, 21, 18, 15, 2384),
+                    at=dt.datetime(2025, 5, 20, 21, 18, 15, 2384, tzinfo=dt.UTC),
                     location=ABSENT_NONE,
                     accuracy=832,
                     ignore="inaccurate",
@@ -139,7 +136,7 @@ RESTORE_STATE_PARAMETRIZE_ARGS = [
                 distance=3.21,
                 trip_distance=1.1,
                 trip_adjustments=0,
-                trip_start=dt.datetime(2025, 5, 20, 21, 21, 59, 2134),
+                trip_start=dt.datetime(2025, 5, 20, 21, 21, 59, 2134, tzinfo=dt.UTC),
             ),
             None,
             None,
@@ -152,7 +149,7 @@ RESTORE_STATE_PARAMETRIZE_ARGS = [
                 distance=6.26,
                 trip_distance=2.1,
                 trip_adjustments=None,
-                trip_start=dt.datetime(2025, 5, 20, 21, 22, 11, 3991),
+                trip_start=dt.datetime(2025, 5, 20, 21, 22, 11, 3991, tzinfo=dt.UTC),
             ),
             None,
             None,
@@ -165,7 +162,7 @@ RESTORE_STATE_PARAMETRIZE_ARGS = [
                 distance=15.22,
                 trip_distance=14.84,
                 trip_adjustments=3.21,
-                trip_start=dt.datetime(2025, 5, 20, 21, 22, 41, 3984),
+                trip_start=dt.datetime(2025, 5, 20, 21, 22, 41, 3984, tzinfo=dt.UTC),
             ),
             None,
             None,
@@ -195,12 +192,13 @@ async def test_restore_sensor_save_state(
     expected_state: str,
 ) -> None:
     """Test saving sensor/coordinator state."""
-
     await setup_integration(hass, mock_config_entry)
 
     coordinator = mock_config_entry.runtime_data.coordinator
     coordinator.inject_data(
-        coordinator.data, history=history or [], transition=transition
+        coordinator.data,
+        history=history or [],
+        transition=transition,
     )
     setattr(coordinator, attr, data)
 
@@ -225,7 +223,8 @@ async def test_restore_sensor_save_state(
 
 
 @pytest.mark.parametrize(
-    *RESTORE_STATE_PARAMETRIZE_ARGS, ids=RESTORE_STATE_PARAMETRIZE_IDS
+    *RESTORE_STATE_PARAMETRIZE_ARGS,
+    ids=RESTORE_STATE_PARAMETRIZE_IDS,
 )
 async def test_restore_state(
     hass: HomeAssistant,
@@ -239,7 +238,6 @@ async def test_restore_state(
     expected_state: str,
 ) -> None:
     """Test restoring sensor/coordinator state."""
-
     extra_stored_data = {}
 
     if history is not None:

@@ -1,9 +1,9 @@
 """Helper to manage history."""
 
+from collections.abc import Callable
 from dataclasses import replace
 import datetime as dt
 import logging
-from typing import Callable
 
 from homeassistant.core import State
 from homeassistant.util import dt as dt_util
@@ -21,7 +21,8 @@ _TRACE = 5
 class HistoryRegistry:
     """HistoryRegistry class."""
 
-    def __init__(self):
+    def __init__(self) -> None:
+        """Initialize."""
         super().__init__()
         self._items: list[HistoryEntry] = []
         self._prior: list[HistoryEntry] | None = None
@@ -33,9 +34,8 @@ class HistoryRegistry:
     @property
     def prior(self) -> list[HistoryEntry]:
         if self._prior is None:
-            raise AttributeError(
-                "prior items unavailable: registry was (re-)initialized and has had no new entries added"
-            )
+            msg = "prior items unavailable: registry was (re-)initialized and has had no new entries added"
+            raise AttributeError(msg)
 
         return self._prior
 
@@ -47,17 +47,16 @@ class HistoryRegistry:
     def prior_entry(self) -> HistoryEntry:
         return self.prior[0]
 
-    def reset(self, items: list[HistoryEntry]):
+    def reset(self, items: list[HistoryEntry]) -> None:
         self._items = items
         self._prior = None
 
     def add_entry_from_state_change(
         self,
         change: StateChangedData,
-        unworkable: Callable[[str], None] = lambda reason: None,
-    ):
-        """
-        Update the location history with a new entry at the head of the list.
+        unworkable: Callable[[str], None] = lambda reason: None,  # noqa: ARG005
+    ) -> None:
+        """Update the location history with a new entry at the head of the list.
 
         Args:
             change: The state changed data from which to derive the new entry.
@@ -98,7 +97,8 @@ class HistoryRegistry:
         if unworkable_reason:
             unworkable(unworkable_reason)
 
-    def _make_entry(self, state: State, at: dt.datetime | None = None) -> HistoryEntry:
+    @classmethod
+    def _make_entry(cls, state: State, at: dt.datetime | None = None) -> HistoryEntry:
         attrs = state.attributes
         gps_accuracy = attrs.get("gps_accuracy")
         inaccurate = _default_negative(gps_accuracy) > 1000
@@ -125,11 +125,16 @@ class HistoryRegistry:
             ignore=ignore,
         )
 
-    def _make_fallback_entry(self, change: StateChangedData) -> HistoryEntry:
-        """Make the fallback history entry."""
-        return self._make_entry(change.old_state, at=change.old_state.last_changed)
+    @classmethod
+    def _make_fallback_entry(cls, change: StateChangedData) -> HistoryEntry:
+        """Make the fallback history entry.
 
-    def _prune_items(self, gps_accuracy: float | None):
+        Returns:
+            A new history entry.
+        """
+        return cls._make_entry(change.old_state, at=change.old_state.last_changed)
+
+    def _prune_items(self, gps_accuracy: float | None) -> None:
         """Prune items for usability.
 
         Items are always kept if:
@@ -171,19 +176,26 @@ class HistoryRegistry:
                 accuracy_threshold = min(accuracy_threshold, entry.accuracy)
 
             _LOGGER.debug(
-                f"\n"
-                f"  [{index}]\n"
-                f"    usable: {usable}\n"
-                f"    waiting_to_be_usable: {waiting_to_be_usable}\n"
-                f"    expired: {expired}\n"
-                f"    is_accurate: {is_accurate}\n"
-                f"    have_one_usable: {have_one_usable}\n"
-                f"    keep: {keep}"
+                "\n"
+                "  [%s]\n"
+                "    usable: %s\n"
+                "    waiting_to_be_usable: %s\n"
+                "    expired: %s\n"
+                "    is_accurate: %s\n"
+                "    have_one_usable: %s\n"
+                "    keep: %s",
+                index,
+                usable,
+                waiting_to_be_usable,
+                expired,
+                is_accurate,
+                have_one_usable,
+                keep,
             )
 
         self._items = result
 
-    def _mark_debounced_items(self):
+    def _mark_debounced_items(self) -> None:
         """Mark items that should be debounced.
 
         Entries that arrive with a very short timeframe of each other are marked
@@ -213,6 +225,9 @@ class HistoryRegistry:
 
         Both `ignore` and `debounce` should only be set to truthy values to
         make these filters easier to write.
+
+        Returns:
+            A new list that has been filtered.
         """
         return [item for item in items if not (item.ignore or item.debounce)]
 

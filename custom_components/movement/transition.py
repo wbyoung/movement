@@ -1,5 +1,6 @@
 """Helper to manage transition."""
 
+from collections.abc import Generator
 from contextlib import contextmanager
 import logging
 
@@ -16,7 +17,11 @@ _TRACE = 5
 class TransitionRegistry:
     """TransitionRegistry class."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(  # noqa: D417
+        self,
+        *args,  # noqa: ANN002
+        **kwargs,  # noqa: ANN003
+    ) -> None:
         """Create a transition registry.
 
         Args:
@@ -32,7 +37,7 @@ class TransitionRegistry:
             config_entry: MovementConfigEntry,
             items: list[TransitionEntry] | None = None,
             prior: list[TransitionEntry] | None = None,
-        ):
+        ) -> None:
             self._items: list[TransitionEntry] | None = items
             self._prior: list[TransitionEntry] | None = prior
             self._prior_valid: bool = "prior" in kwargs or len(args) >= 3
@@ -47,19 +52,18 @@ class TransitionRegistry:
     @property
     def prior(self) -> list[TransitionEntry] | None:
         if not self._prior_valid:
-            raise AttributeError(
-                "prior items unavailable: registry was (re-)initialized and has had no update"
-            )
+            msg = "prior items unavailable: registry was (re-)initialized and has had no update"
+            raise AttributeError(msg)
 
         return self._prior
 
-    def reset(self, items: list[TransitionEntry] | None):
+    def reset(self, items: list[TransitionEntry] | None) -> None:
         self._items = items
         self._prior = None
         self._prior_valid = False
 
     @contextmanager
-    def update_pending(self, noop_update_on_exit=False):
+    def update_pending(self, *, noop_update_on_exit: bool = False) -> Generator[None]:
         self._pre_update()
         try:
             yield
@@ -70,10 +74,10 @@ class TransitionRegistry:
     def process_update(
         self,
         update: MovementData,
+        *,
         transitioning: bool,
     ) -> float:
-        """
-        Update transition objects.
+        """Update transition objects.
 
         Returns:
           The new total adjustments for the update.
@@ -94,7 +98,7 @@ class TransitionRegistry:
 
         return result
 
-    def _clear_adjusted_entries(self):
+    def _clear_adjusted_entries(self) -> None:
         """Clear out completed transition entries.
 
         These are the entries that have the `adjustments` attribute (from the
@@ -115,7 +119,7 @@ class TransitionRegistry:
 
         self._items = entries
 
-    def _add_new_pending_entry(self, update: MovementData):
+    def _add_new_pending_entry(self, update: MovementData) -> None:
         """Store the update distance in a pending entry.
 
         When transitioning, this allows waiting to calculate adjustments until
@@ -127,7 +131,7 @@ class TransitionRegistry:
         if update.distance > 0:
             self._items.append(TransitionEntry(distance=update.distance))
 
-    def _finalize_pending_entries(self, update: MovementData):
+    def _finalize_pending_entries(self, update: MovementData) -> None:
         """Finalize pending entries.
 
         When the speed/mode is known, the existing entries can be finalized by
@@ -154,27 +158,29 @@ class TransitionRegistry:
                     TransitionEntry(
                         distance=transition_entry.distance + new_adjustments,
                         adjustments=new_adjustments,
-                    )
+                    ),
                 )
             entries = new_entries
 
         self._items = entries
 
     def _calculate_adjustments(self, update: MovementData) -> float:
-        """Calculate new adjustments for the update."""
+        """Calculate new adjustments for the update.
+
+        Returns:
+            The new adjustments.
+        """
         return update.adjustments + sum(
-            [
-                item.adjustments
-                for item in (self._items or [])
-                if item.adjustments != ABSENT_NONE
-            ]
+            item.adjustments
+            for item in (self._items or [])
+            if item.adjustments != ABSENT_NONE
         )
 
-    def _pre_update(self):
+    def _pre_update(self) -> None:
         """Prepare for a pending update."""
         self._prior_valid = False
 
-    def _post_update(self):
+    def _post_update(self) -> None:
         """Update items post-update if needed not already done."""
         if not self._prior_valid:
             self._prior = self._items

@@ -7,28 +7,29 @@ from custom_components.movement.transition import TransitionRegistry
 from custom_components.movement.types import MovementData
 
 
-async def test_prior_attribute_availability(
+def test_prior_attribute_availability(
     mock_config_entry: MockConfigEntry,
 ) -> None:
     """Test that the prior attribute is unavailable."""
-
     transition = TransitionRegistry(mock_config_entry)
 
     # after init, we should get an attribute error.
     with pytest.raises(AttributeError):
-        transition.prior
+        transition.prior  # noqa: B018
 
     # use the `update_pending` context manager with `noop_update_on_exit`, then
     # access should work fine, but during, it should not.
-    with transition.update_pending(noop_update_on_exit=True):
-        with pytest.raises(AttributeError):
-            transition.prior
-    transition.prior
+    with (
+        transition.update_pending(noop_update_on_exit=True),
+        pytest.raises(AttributeError),
+    ):
+        transition.prior  # noqa: B018
+    transition.prior  # noqa: B018
 
     # reset, and we should get an attribute. error again
     transition.reset([])
     with pytest.raises(AttributeError):
-        transition.prior
+        transition.prior  # noqa: B018
 
     # after  `process_update`, access should work fine.
     transition.process_update(
@@ -42,12 +43,11 @@ async def test_prior_attribute_availability(
         ),
         transitioning=False,
     )
-    transition.prior
+    transition.prior  # noqa: B018
 
     # use the `update_pending` context manager, and we should get an attribute
     # error during and after.
-    with transition.update_pending():
-        with pytest.raises(AttributeError):
-            transition.prior
+    with transition.update_pending(), pytest.raises(AttributeError):
+        transition.prior  # noqa: B018
     with pytest.raises(AttributeError):
-        transition.prior
+        transition.prior  # noqa: B018

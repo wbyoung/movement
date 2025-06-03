@@ -1,6 +1,5 @@
 """Fixtures for testing."""
 
-from collections.abc import Generator
 import logging
 from pathlib import Path
 
@@ -33,7 +32,7 @@ def pytest_configure(config) -> None:
     if not is_capturing and config.pluginmanager.hasplugin("logging"):
         _LOGGER.warning(
             "pytest run with `-s/--capture=no` and the logging plugin enabled "
-            "run with `-p no:logging` to disable all sources of log capturing."
+            "run with `-p no:logging` to disable all sources of log capturing.",
         )
 
     # `pytest_homeassistant_custom_component` calls `logging.basicConfig` which
@@ -61,12 +60,11 @@ def snapshot(snapshot: SnapshotAssertion) -> SnapshotAssertion:
 def mock_now(
     hass: HomeAssistant,
     freezer: FrozenDateTimeFactory,
-) -> Generator[MockNow, None, None]:
+) -> MockNow:
     """Return a mock now & utcnow datetime."""
-
     freezer.move_to(MOCK_UTC_NOW)
 
-    yield MockNow(hass, freezer)
+    return MockNow(hass, freezer)
 
 
 _scenarios_validated = False

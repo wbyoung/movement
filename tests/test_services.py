@@ -40,17 +40,18 @@ USE_CONFIG = DefaultConfigEntry._singleton
 
 @pytest.fixture
 def config_entry_data(
-    mock_config_entry: MockConfigEntry, request: pytest.FixtureRequest
+    mock_config_entry: MockConfigEntry,
+    request: pytest.FixtureRequest,
 ) -> dict[str, str]:
     """Fixture for the config entry."""
     if "config_entry" in request.param and request.param["config_entry"] is USE_CONFIG:
         return {"config_entry": mock_config_entry.entry_id}
 
-    return cast(dict[str, str], request.param)
+    return cast("dict[str, str]", request.param)
 
 
 @pytest.mark.usefixtures("init_integration")
-async def test_has_services(
+def test_has_services(
     hass: HomeAssistant,
 ) -> None:
     """Test the existence of the Movement Service."""
@@ -59,17 +60,15 @@ async def test_has_services(
 
 @pytest.mark.usefixtures("init_integration")
 @pytest.mark.parametrize(
-    ("attrs",),
+    "attrs",
     [
-        ({ATTR_DISTANCE: 1.2},),
-        ({ATTR_ADJUSTMENTS: 3.1},),
-        (
-            {
-                ATTR_DISTANCE: 1.2,
-                ATTR_ADJUSTMENTS: 3.1,
-                ATTR_MODE_OF_TRANSIT: str(ModeOfTransit.BIKING),
-            },
-        ),
+        {ATTR_DISTANCE: 1.2},
+        {ATTR_ADJUSTMENTS: 3.1},
+        {
+            ATTR_DISTANCE: 1.2,
+            ATTR_ADJUSTMENTS: 3.1,
+            ATTR_MODE_OF_TRANSIT: str(ModeOfTransit.BIKING),
+        },
     ],
     ids=["distance_only", "adjustments_only", "all_attrs"],
 )
@@ -96,7 +95,7 @@ async def test_add_distance_service(
                 at=dt_util.utcnow() - dt.timedelta(seconds=51.23),
                 location=Location(55.301973, -114.820543),
                 accuracy=44,
-            )
+            ),
         ],
         transition=None,
     )
@@ -154,7 +153,6 @@ async def test_add_distance_service_validation(
     error_message: str,
 ) -> None:
     """Test the `add_distance` service validation."""
-
     with pytest.raises(error) as exc:
         await hass.services.async_call(
             DOMAIN,

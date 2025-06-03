@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Generator
 from dataclasses import dataclass, fields
 import datetime as dt
 from enum import Flag, StrEnum, auto
@@ -23,6 +24,11 @@ class MisconfigurationError(IntegrationError):
 
 class EntityMissingError(IntegrationError):
     """Error to indicate that a tracked/dependent entity is missing."""
+
+    def __init__(self, entity_id: str) -> None:
+        """Initialize."""
+
+        super().__init__(f"Entity could not be found for {entity_id}")
 
 
 @dataclass
@@ -47,18 +53,24 @@ class MovementConfigEntryRuntimeData:
 
 
 class AbsentFalse(Flag):
+    """Absent class with singleton for `False` value."""
+
     _singleton = False
 
 
 class AbsentNone(Flag):
+    """Absent class with singleton for `None` value."""
+
     _singleton = None
 
 
-ABSENT_FALSE = AbsentFalse._singleton
-ABSENT_NONE = AbsentNone._singleton
+ABSENT_FALSE = AbsentFalse._singleton  # noqa: SLF001
+ABSENT_NONE = AbsentNone._singleton  # noqa: SLF001
 
 
 class ModeOfTransit(StrEnum):
+    """ModeOfTransit class."""
+
     WALKING = auto()
     BIKING = auto()
     DRIVING = auto()
@@ -72,11 +84,11 @@ class StatisticGroup:
     speed_recent_avg: sts.Statistic
     speed_recent_max: sts.Statistic
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[sts.Statistic]:
         for field in fields(self):
             yield getattr(self, field.name)
 
-    def items(self):
+    def items(self) -> Generator[tuple[str, sts.Statistic]]:
         for field in fields(self):
             yield (field.name, getattr(self, field.name))
 
@@ -142,7 +154,7 @@ class Location:
 class HistoryEntry:
     """HistoryEntry class."""
 
-    NO_ACCURACY = float("inf")
+    NO_ACCURACY = float("inf")  # noqa: RUF045
 
     at: dt.datetime
     location: Location | AbsentNone
@@ -160,10 +172,10 @@ class HistoryEntry:
             result["location"] = self.location.as_dict() if self.location else None
 
         if self.ignore != ABSENT_NONE:
-            result["ignore"] = self.ignore if self.ignore else None
+            result["ignore"] = self.ignore or None
 
         if self.debounce != ABSENT_FALSE:
-            result["debounce"] = self.debounce if self.debounce else None
+            result["debounce"] = self.debounce or None
 
         return result
 
@@ -246,7 +258,7 @@ class TypedMovementData:
             trip_distance=data.get("trip_distance"),
             trip_adjustments=data.get("trip_adjustments"),
             trip_start=dt_util.parse_datetime(data["trip_start"])
-            if "trip_start" in data and data["trip_start"]
+            if data.get("trip_start")
             else None,
         )
 
@@ -278,7 +290,7 @@ class MovementData:
             distance=data.get("distance", 0),
             adjustments=data.get("adjustments", 0),
             speed=data.get("speed"),
-            mode_of_transit=cast(ModeOfTransit, data.get("mode_of_transit")),
+            mode_of_transit=cast("ModeOfTransit", data.get("mode_of_transit")),
             change_count=data.get("change_count", 0),
             ignore_count=data.get("ignore_count", 0),
         )

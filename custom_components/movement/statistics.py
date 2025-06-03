@@ -34,7 +34,10 @@ def _stat_change_second(states: deque[float], ages: deque[float]) -> float | Non
     return None
 
 
-def _stat_value_max(states: deque[float], ages: deque[float]) -> float | None:
+def _stat_value_max(
+    states: deque[float],
+    ages: deque[float],  # noqa: ARG001
+) -> float | None:
     if len(states) > 0:
         return max(states)
     return None
@@ -54,7 +57,8 @@ STATS_NUMERIC_SUPPORT = {
 class Statistic:
     """Representation of a Statistic.
 
-    This is a very stripped down version of the Statistics sensor."""
+    This is a very stripped down version of the Statistics sensor.
+    """
 
     def __init__(
         self,
@@ -94,7 +98,11 @@ class Statistic:
         self._async_purge_and_update()
 
     def next_to_purge_timestamp(self) -> float | None:
-        """Find the timestamp when the next purge would occur."""
+        """Find the timestamp when the next purge would occur.
+
+        Returns:
+            The next purge timestamp.
+        """
         if self.ages and self._samples_max_age:
             # Take the oldest entry from the ages list and add the configured max_age.
             # If executed after purging old states, the result is the next timestamp
@@ -139,7 +147,6 @@ class Statistic:
 
         One of the _stat_*() functions is represented by self._state_characteristic_fn().
         """
-
         value = self._state_characteristic_fn(self.states, self.ages)
         _LOGGER.debug(
             "%s: updating value: states: %s, ages: %s => %s",

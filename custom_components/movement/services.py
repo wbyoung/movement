@@ -34,20 +34,27 @@ SERVICE_SCHEMA_ADD_DISTANCE: Final = vol.Schema(
         vol.Required(ATTR_CONFIG_ENTRY): selector.ConfigEntrySelector(
             {
                 "integration": DOMAIN,
-            }
+            },
         ),
         vol.Optional(ATTR_DISTANCE): vol.Coerce(float),
         vol.Optional(ATTR_ADJUSTMENTS): vol.Coerce(float),
         vol.Optional(ATTR_MODE_OF_TRANSIT): vol.Coerce(ModeOfTransit),
-    }
+    },
 )
 
 
 def _get_coordinator(
-    hass: HomeAssistant, call: ServiceCall
+    hass: HomeAssistant,
+    call: ServiceCall,
 ) -> MovementUpdateCoordinator:
-    """Get the coordinator from the entry."""
+    """Get the coordinator from the entry.
 
+    Raises:
+        ServiceValidationError: When the entry is not valid.
+
+    Returns:
+        The update coordinator.
+    """
     entry_id: str = call.data[ATTR_CONFIG_ENTRY]
     entry: ConfigEntry | None = hass.config_entries.async_get_entry(entry_id)
 
@@ -93,7 +100,6 @@ async def _add_distance(
 @callback
 def async_setup_services(hass: HomeAssistant) -> None:
     """Set up Movement services."""
-
     hass.services.async_register(
         DOMAIN,
         SERVICE_NAME_ADD_DISTANCE,

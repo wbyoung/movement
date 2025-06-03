@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 import logging
-from typing import Any, Callable, NamedTuple
+from typing import Any, NamedTuple
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -67,14 +68,17 @@ class MovementSensorDescription(SensorEntityDescription):
     """Class describing Movement sensor entities."""
 
     value_fn: Callable[
-        [MovementData, MovementUpdateCoordinator], str | int | float | None
+        [MovementData, MovementUpdateCoordinator],
+        str | int | float | None,
     ]
     attrs_fn: Callable[
-        [MovementData, MovementUpdateCoordinator], dict[str, Any] | None
+        [MovementData, MovementUpdateCoordinator],
+        dict[str, Any] | None,
     ] = lambda _, __: None
 
     restore_data_fn: Callable[
-        [MovementData, MovementUpdateCoordinator], dict[str, Any] | None
+        [MovementData, MovementUpdateCoordinator],
+        dict[str, Any] | None,
     ] = lambda _, __: None
 
     restore_fn: Callable[[MovementUpdateCoordinator, dict[str, Any]], None] = (
@@ -83,7 +87,8 @@ class MovementSensorDescription(SensorEntityDescription):
 
 
 def _set_coordinator_data(
-    coordinator: MovementUpdateCoordinator, data: dict[str, Any]
+    coordinator: MovementUpdateCoordinator,
+    data: dict[str, Any],
 ) -> None:
     history = data.pop("history", [])
     transition = data.pop("transition", None)
@@ -164,7 +169,9 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
         restore_data_fn=lambda _,
         coordinator: coordinator.walking_movement_data.as_dict(),
         restore_fn=lambda coordinator, data: _set_coordinator_typed_movement_data(
-            coordinator, ModeOfTransit.WALKING, TypedMovementData.from_dict(data)
+            coordinator,
+            ModeOfTransit.WALKING,
+            TypedMovementData.from_dict(data),
         ),
         state_class=SensorStateClass.TOTAL_INCREASING,
         device_class=SensorDeviceClass.DISTANCE,
@@ -186,7 +193,9 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
         restore_data_fn=lambda _,
         coordinator: coordinator.biking_movement_data.as_dict(),
         restore_fn=lambda coordinator, data: _set_coordinator_typed_movement_data(
-            coordinator, ModeOfTransit.BIKING, TypedMovementData.from_dict(data)
+            coordinator,
+            ModeOfTransit.BIKING,
+            TypedMovementData.from_dict(data),
         ),
         state_class=SensorStateClass.TOTAL_INCREASING,
         device_class=SensorDeviceClass.DISTANCE,
@@ -208,7 +217,9 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
         restore_data_fn=lambda _,
         coordinator: coordinator.driving_movement_data.as_dict(),
         restore_fn=lambda coordinator, data: _set_coordinator_typed_movement_data(
-            coordinator, ModeOfTransit.DRIVING, TypedMovementData.from_dict(data)
+            coordinator,
+            ModeOfTransit.DRIVING,
+            TypedMovementData.from_dict(data),
         ),
         state_class=SensorStateClass.TOTAL_INCREASING,
         device_class=SensorDeviceClass.DISTANCE,
@@ -220,7 +231,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
         key=ATTR_SPEED,
         translation_key=ATTR_SPEED,
         value_fn=lambda data, _: data.speed,
-        attrs_fn=lambda data, coordinator: (
+        attrs_fn=lambda _, coordinator: (
             {
                 "speed_recent_avg": coordinator.statistics.speed_recent_avg.value,
                 "speed_recent_max": coordinator.statistics.speed_recent_max.value,
@@ -235,7 +246,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
         key=ATTR_MODE_OF_TRANSIT,
         translation_key=ATTR_MODE_OF_TRANSIT,
         value_fn=lambda data, _: data.mode_of_transit,
-        attrs_fn=lambda data, coordinator: (
+        attrs_fn=lambda _, coordinator: (
             {
                 "transitioning": bool(coordinator.transition.items),
             }
@@ -247,7 +258,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
     MovementSensorDescription(
         key=ATTR_GPS_ACCURACY,
         translation_key=ATTR_GPS_ACCURACY,
-        value_fn=lambda data, coordinator: (
+        value_fn=lambda _, coordinator: (
             (
                 (items := coordinator.history.items)
                 and (item := items[0] if len(items) else None)
@@ -279,8 +290,8 @@ def _device_info(coordinator: MovementUpdateCoordinator) -> DeviceInfo:
     )
 
 
-async def async_setup_entry(
-    hass: HomeAssistant,
+async def async_setup_entry(  # noqa: RUF029
+    hass: HomeAssistant,  # noqa: ARG001
     entry: MovementConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
@@ -308,7 +319,9 @@ async def async_setup_entry(
 
 
 class MovementSensor(
-    CoordinatorEntity[MovementUpdateCoordinator], SensorEntity, RestoreEntity
+    CoordinatorEntity[MovementUpdateCoordinator],
+    SensorEntity,
+    RestoreEntity,
 ):
     """Movement sensor."""
 
@@ -336,7 +349,7 @@ class MovementSensor(
 
         if (
             (last_state := await self.async_get_last_state()) is not None
-            and last_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE)
+            and last_state.state not in {STATE_UNKNOWN, STATE_UNAVAILABLE}
             and (extra_data := await self.async_get_last_extra_data()) is not None
         ):
             self.entity_description.restore_fn(self.coordinator, extra_data.as_dict())

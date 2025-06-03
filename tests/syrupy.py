@@ -46,7 +46,7 @@ class MovementSnapshotSerializer(HomeAssistantSnapshotSerializer):
     def _serializable_event(cls, data: Event) -> SerializableData:
         """Prepare a Home Assistant event for serialization."""
         return EventSnapshot(
-            data.as_dict() | {"id": ANY, "time_fired": ANY, "context": ANY}
+            data.as_dict() | {"id": ANY, "time_fired": ANY, "context": ANY},
         )
 
 
@@ -54,5 +54,5 @@ class MovementSnapshotExtension(HomeAssistantSnapshotExtension):
     serializer_class: type[AmberDataSerializer] = MovementSnapshotSerializer
 
 
-class EventSnapshot(dict):
+class EventSnapshot(dict):  # noqa: FURB189
     """Tiny wrapper to represent an event in snapshots."""

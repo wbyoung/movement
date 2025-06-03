@@ -22,15 +22,15 @@ class MockNow:
 
 
 async def setup_integration(hass: HomeAssistant, config_entry: MockConfigEntry) -> None:
-    """Helper for setting up the component."""
+    """Set up the component."""
     config_entry.add_to_hass(hass)
     await setup_added_integration(hass, config_entry)
 
 
 async def setup_added_integration(
-    hass: HomeAssistant, config_entry: MockConfigEntry
+    hass: HomeAssistant,
+    config_entry: MockConfigEntry,
 ) -> None:
-    """Helper for setting up a previously added component."""
-
+    """Set up a previously added component."""
     await hass.config_entries.async_setup(config_entry.entry_id)
     await hass.async_block_till_done()

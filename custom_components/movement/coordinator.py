@@ -6,7 +6,7 @@ from functools import partial
 import logging
 import re
 import time
-from typing import Any, Final, TypedDict
+from typing import Any, Final, NoReturn, TypedDict
 
 from homeassistant.core import (
     CALLBACK_TYPE,
@@ -87,10 +87,10 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         config_entry: MovementConfigEntry,
     ) -> None:
         """Initialize."""
-
         self.tracked_entity: str = config_entry.data[CONF_TRACKED_ENTITY]
         self.dependent_entities: list[str] = config_entry.data.get(
-            CONF_DEPENDENT_ENTITIES, []
+            CONF_DEPENDENT_ENTITIES,
+            [],
         )
         self.history = HistoryRegistry()
         self.transition = TransitionRegistry(config_entry)
@@ -141,7 +141,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         *,
         history: list[HistoryEntry],
         transition: list[TransitionEntry] | None,
-    ):
+    ) -> None:
         """Inject new data.
 
         This sets new data & history without:
@@ -165,8 +165,9 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         """Inject typed movement data.
 
         Like `inject_data`, but for the typed data stored for specific movement
-        types."""
-        setattr(self, f"{str(movement_type)}_movement_data", data)
+        types.
+        """
+        setattr(self, f"{movement_type!s}_movement_data", data)
 
         # ensure sensor availability now that restore is complete. this covers
         # the case where the main distance traveled sensor is disabled and
@@ -177,7 +178,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
     async def async_perform_service_adjustment(
         self,
         adjustment: ServiceAdjustment,
-    ):
+    ) -> None:
         assert self.change is None, (
             "only one change handler should be invoked before refresh"
         )
@@ -224,7 +225,8 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
             await self.async_refresh()
 
     async def async_handle_tracked_entity_change(
-        self, event: Event[er.EventEntityRegistryUpdatedData]
+        self,
+        event: Event[er.EventEntityRegistryUpdatedData],
     ) -> None:
         """Fetch and process tracked entity change event."""
         data = event.data
@@ -251,7 +253,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 },
             )
 
-    def cancel_all_listeners(self):
+    def cancel_all_listeners(self) -> None:
         """Cancel all scheduled listeners."""
         self._async_cancel_reset_listener()
         self._async_cancel_statistics_update_listener()
@@ -278,8 +280,8 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
     @callback
     async def _async_perform_reset(
         self,
-        now: dt.datetime | None = None,
-    ):
+        now: dt.datetime | None = None,  # noqa: ARG002
+    ) -> None:
         """Timer callback for daily resets."""
         assert self.change is None, (
             "only one change handler should be invoked before refresh"
@@ -298,7 +300,10 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         await self.async_refresh()
 
     @callback
-    async def _async_handle_statistics_update(self, now: dt.datetime) -> None:
+    async def _async_handle_statistics_update(
+        self,
+        now: dt.datetime,  # noqa: ARG002
+    ) -> None:
         """Timer callback for sensor update."""
         _LOGGER.debug(
             "%s (%s): executing handler for scheduled statistics update",
@@ -350,7 +355,10 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
             self.async_update_listeners()
 
     @callback
-    async def _async_handle_updates_stalled(self, now: dt.datetime | None = None):
+    async def _async_handle_updates_stalled(
+        self,
+        now: dt.datetime | None = None,  # noqa: ARG002
+    ) -> None:
         """Timer callback for updates stalling."""
         assert self.change is None, (
             "only one change handler should be invoked before refresh"
@@ -368,7 +376,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
 
         await self.async_refresh()
 
-    async def _async_setup(self):
+    async def _async_setup(self) -> None:
         await super()._async_setup()
 
         self.data = MovementData(
@@ -411,7 +419,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 )
 
         self._recalc_default_typed_movement_data()
-        self._notify_dependant_trigger_entities()
+        self._notify_dependent_trigger_entities()
         self._add_statistics_post_update()
         self._schedule_reset_event()
         self._schedule_statistics_update()
@@ -438,10 +446,11 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
 
         return self.update
 
-    def _add_statistics_post_update(self):
+    def _add_statistics_post_update(self) -> None:
         """Add necessary values to all statistics objects.
 
-        This must be done post-update when `self.update` has been set."""
+        This must be done post-update when `self.update` has been set.
+        """
         update = self.update
         now_timestamp = time.time()
 
@@ -452,11 +461,11 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
             self.statistics.speed_recent_avg.add_state(update.speed, now_timestamp)
             self.statistics.speed_recent_max.add_state(update.speed, now_timestamp)
 
-    def _schedule_reset_event(self):
+    def _schedule_reset_event(self) -> None:
         """Ensure scheduling is in place for restting at midnight."""
         if not self._reset_listener:
             next_midnight = dt_util.start_of_local_day(
-                dt_util.now() + dt.timedelta(days=1)
+                dt_util.now() + dt.timedelta(days=1),
             )
             self._reset_listener = evt.async_track_point_in_time(
                 self.hass,
@@ -464,17 +473,18 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 next_midnight,
             )
 
-    def _schedule_statistics_update(self):
-        """Reschedule when the next statistics update will occur based on the
-        current state of statistics objects.
+    def _schedule_statistics_update(self) -> None:
+        """Reschedule when the next statistics update will occur.
 
-        Note: this does not update the statistics. The caller must do so before
-        invoking this method."""
-        timestamps = []
-
-        for statistic in self.statistics:
-            if purge_timestamp := statistic.next_to_purge_timestamp():
-                timestamps.append(purge_timestamp)
+        Recalculation is based on the current state of statistics objects. This
+        method _does not_ update the statistics. The caller must do so before
+        invoking this method.
+        """
+        timestamps = [
+            purge_timestamp
+            for statistic in self.statistics
+            if (purge_timestamp := statistic.next_to_purge_timestamp())
+        ]
 
         if timestamps:
             utc_time = dt_util.utc_from_timestamp(min(timestamps))
@@ -491,12 +501,16 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 utc_time,
             )
 
-    def _schedule_updates_stalled_event_post_update(self):
+    def _schedule_updates_stalled_event_post_update(self) -> None:
         """Ensure scheduling is in place for handling stalled updates.
 
-        This must be done post-update when `self.update` has been set."""
-        assert (update := self.update) is not None
-        assert (data := self.data) is not None
+        This must be done post-update when `self.update` has been set.
+        """
+        update = self.update
+        data = self.data
+
+        assert update is not None
+        assert data is not None
 
         # the speed is valid until 20 minutes from either:
         #
@@ -510,7 +524,8 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         is_distance_added = update.distance > data.distance
         is_transition_starting = len(self.transition.items or []) == 1
         is_transition_continuing = len(self.transition.items or []) > max(
-            1, len(self.transition.prior or [])
+            1,
+            len(self.transition.prior or []),
         )
         is_applicable_change = not is_transition_continuing
         should_reschedule = is_applicable_change and (
@@ -528,15 +543,21 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
     def _internal_recalc(
         self,
     ) -> None:
-        """Main internal recalculation entrypoint.
+        """Perform internal recalculation (main entrypoint).
 
         This controls the sequence of events that needs to happen to calculate
         all of the values that need to be populated in an update. It expects
         that `self.data` & `self.update` have been created prior to being called
         and that all statistics were previously updated.
+
+        Raises:
+            SkipUpdateCondition: When the update should be skipped.
         """
-        assert (update := self.update) is not None
-        assert (data := self.data) is not None
+        update = self.update
+        data = self.data
+
+        assert update is not None
+        assert data is not None
 
         transitioning = False
 
@@ -586,7 +607,6 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 prior=self.data,
                 update=self.update,
                 statistics=self.statistics,
-                history=self.history,
                 transition=self.transition,
                 proposed_mode=proposed_mode,
             )
@@ -663,10 +683,11 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         if update.distance != data.distance:
             update.change_count = max(update.change_count, 0) + 1
 
-    def _recalc_default_typed_movement_data(self):
+    def _recalc_default_typed_movement_data(self) -> None:
         """Recalculation for walking, biking, and driving sensor data.
 
-        This should be called after the main recalculation is complete."""
+        This should be called after the main recalculation is complete.
+        """
         reset = isinstance(self.change, ResetRequest)
 
         class SharedKwargs(TypedDict):
@@ -700,7 +721,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
             **shared_kwargs,
         )
 
-    def _notify_dependant_trigger_entities(self):
+    def _notify_dependent_trigger_entities(self) -> None:
         reset = isinstance(self.change, ResetRequest)
 
         for entity_id in self.dependent_entities:
@@ -734,7 +755,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                         "from_state": from_state,
                         "to_state": to_state,
                         "_for": slugify(
-                            re.sub(r"([A-Z]+)", r" \1", type(self.change).__name__)
+                            re.sub(r"([A-Z]+)", r" \1", type(self.change).__name__),
                         ),
                         "updates": event_data,
                     },
@@ -748,16 +769,26 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 )
 
     def _get_dependent_trigger_entity_config_from_state(
-        self, entity_id: str
+        self,
+        entity_id: str,
     ) -> tuple[TypedMovementData, ModeOfTransit]:
-        """Get state as TypedMovementData and mode type data for a dependent
-        trigger entity."""
+        """Get dependent trigger entity config.
 
+        The result is the state as TypedMovementData and mode type data.
+
+        Returns:
+            The typed movement data & mode of transit.
+
+        Raises:
+            EntityMissingError: If the entity cannot be found.
+            MisconfigurationError: If the entity is missing a mode type
+                attribute.
+        """
         if not (state := self.hass.states.get(entity_id)):
-            raise EntityMissingError(f"Entity could not be found for {entity_id}")
+            raise EntityMissingError(entity_id)
 
         distance = (
-            float(state.state) if state.state not in ("unknown", "undefined") else 0
+            float(state.state) if state.state not in {"unknown", "undefined"} else 0
         )
         attributes = dict(state.attributes) if state else {}
         type_data = TypedMovementData.from_dict({"distance": distance, **attributes})
@@ -766,9 +797,8 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         _LOGGER.debug("mode type found from sensor attributes %s", mode_type)
 
         if not mode_type:
-            raise MisconfigurationError(
-                f"Missing `mode_type` attribute on dependent template entity {entity_id}"
-            )
+            msg = f"Missing `mode_type` attribute on dependent template entity {entity_id}"
+            raise MisconfigurationError(msg)
 
         return type_data, mode_type
 
@@ -789,7 +819,7 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
         )
 
 
-def _serialize(data: Any):
+def _serialize(data: Any) -> Any:  # noqa: ANN401
     if is_dataclass(type(data)):
         data = {
             field.name: _serialize(getattr(data, field.name)) for field in fields(data)
@@ -799,5 +829,9 @@ def _serialize(data: Any):
     return data
 
 
-def _raise(exception: type[Exception], *args, **kwargs):
+def _raise(
+    exception: type[Exception],
+    *args,  # noqa: ANN002
+    **kwargs,  # noqa: ANN003
+) -> NoReturn:
     raise exception(*args, **kwargs)

@@ -62,9 +62,8 @@ def calculate_distance(
     *,
     update: MovementData,
     history: HistoryRegistry,
-):
-    """
-    Calculate the distance moved for an update.
+) -> None:
+    """Calculate the distance moved for an update.
 
     Args:
         update: The update into which calculated update values are stored. Note
@@ -100,14 +99,13 @@ def calculate_distance(
     update.distance = distance
 
 
-def calculate_speed(
+def calculate_speed(  # noqa: PLR0914
     *,
     prior: MovementData,
     update: MovementData,
     history: HistoryRegistry,
-):
-    """
-    Calculate speed while considering various factors.
+) -> None:
+    """Calculate speed while considering various factors.
 
     Args:
         prior: The state of data prior to what's currently being calculated.
@@ -233,13 +231,19 @@ def calculate_speed(
         acceptable_time_lapsed = delta >= delta_min and delta < delta_max
 
         _LOGGER.debug(
-            f"\n"
-            f"  [{index}]\n"
-            f"    delta: {delta}\n"
-            f"    distance_in_meters: {distance_in_meters}\n"
-            f"    accuracy_combined: {accuracy_combined}\n"
-            f"    acceptable_movement: {acceptable_movement}\n"
-            f"    acceptable_time_lapsed: {acceptable_time_lapsed}"
+            "\n"
+            "  [%s]\n"
+            "    delta: %s\n"
+            "    distance_in_meters: %s\n"
+            "    accuracy_combined: %s\n"
+            "    acceptable_movement: %s\n"
+            "    acceptable_time_lapsed: %s",
+            index,
+            delta,
+            distance_in_meters,
+            accuracy_combined,
+            acceptable_movement,
+            acceptable_time_lapsed,
         )
 
         if acceptable_time_lapsed and acceptable_movement:
@@ -276,25 +280,10 @@ def update_or_maintain_mode(
     prior: MovementData,
     update: MovementData,
     statistics: StatisticGroup,
-    history: HistoryRegistry,
     transition: TransitionRegistry,
     proposed_mode: ModeOfTransit | None,
-):
-    """
-    Update the mode of transit if shouldn't be maintained at the prior value.
-
-    Args:
-        prior: The state of data prior to what's currently being calculated.
-        update: The update into which calculated update values are stored.
-        statistics: The statistics containing recent speed details.
-        history: The history containing information about prior locations.
-        transition: The transition containing information about updates that
-            could not be processed immediately.
-        proposed_mode: Proposed (newly calculated) mode of transit
-
-    Raises:
-        TransitionRequiredCondition: If the prior mode of transit should be
-            maintaied.
+) -> None:
+    """Update the mode of transit if shouldn't be maintained at the prior value.
 
     It will be maintained in two cases, discussed in more detail below:
 
@@ -356,6 +345,18 @@ def update_or_maintain_mode(
     `DISTANCE_THRESHOLDS_BEFORE_MODE_CHANGE`, and the distance changes will be
     put into `transition` until that distance is reached (or a new update
     selects a different mode).
+
+    Args:
+        prior: The state of data prior to what's currently being calculated.
+        update: The update into which calculated update values are stored.
+        statistics: The statistics containing recent speed details.
+        transition: The transition containing information about updates that
+            could not be processed immediately.
+        proposed_mode: Proposed (newly calculated) mode of transit
+
+    Raises:
+        TransitionRequiredCondition: If the prior mode of transit should be
+            maintaied.
     """
     assert prior is not None
     assert update is not None
@@ -396,7 +397,7 @@ def update_or_maintain_mode(
 
     # check that distance threshold has been met when mode is changing
     if not maintain and proposed_mode != prior_mode:
-        transition_distances = sum([item.distance for item in transition.items or []])
+        transition_distances = sum(item.distance for item in transition.items or [])
         threshold = (
             DISTANCE_THRESHOLDS_BEFORE_MODE_CHANGE.get(str(proposed_mode), 0)
             if proposed_mode is not None
@@ -407,7 +408,8 @@ def update_or_maintain_mode(
         _LOGGER.debug("constraining transition to %s: %s", proposed_mode, maintain)
 
         if maintain:
-            raise TransitionRequiredCondition(f"maintain mode: {maintain}")
+            msg = f"maintain mode: {mode}"
+            raise TransitionRequiredCondition(msg)
 
     if not maintain:
         mode = proposed_mode
@@ -425,8 +427,7 @@ def calculate_distance_adjustments(
     transitioning: bool,
     config_entry: MovementConfigEntry,
 ) -> float:
-    """
-    Calculate per-person customizations to driving distance.
+    """Calculate per-person customizations to driving distance.
 
     Args:
         distance: The change in distance for the current update.
@@ -436,6 +437,9 @@ def calculate_distance_adjustments(
         transitioning: Used to indicate that the current update is considered
             to be in transition.
         config_entry: The config entry containing the user's settings.
+
+    Returns:
+        The distance adjustments.
     """
     mode = mode_of_transit
     distance_adjustments = 0
@@ -461,8 +465,7 @@ def calculate_distance_adjustments(
 
 
 def mode_of_transit_from_speed(speed: float) -> ModeOfTransit:
-    """
-    Calculate mode of transit from speed.
+    """Calculate mode of transit from speed.
 
     The following information is informative in making a judgment about speed
     thresholds:
@@ -470,6 +473,9 @@ def mode_of_transit_from_speed(speed: float) -> ModeOfTransit:
     - Brisk walking pace 5.6-6.4 km/h
     - Fast walking pace 6.4-8 km/h
     - Commuter biking can top out at about 16 km/hr
+
+    Returns:
+        The mode of transit.
     """
     return (
         ModeOfTransit.DRIVING
@@ -493,6 +499,9 @@ def get_updates_for_typed_movement_sensor(
     """Get updates for a typed movement sensor, i.e. distance walking.
 
     This is also used for dependent template entities.
+
+    Returns:
+        The typed movement data.
     """
     _LOGGER.debug(
         "_typed_distance calculation for `%s` on %s (%s)",
@@ -529,7 +538,7 @@ def get_updates_for_typed_movement_sensor(
                 item
                 for item in (transition.items or [])
                 if item.adjustments == ABSENT_NONE
-            ]
+            ],
         )
         > 0
     )
@@ -601,17 +610,13 @@ def get_updates_for_typed_movement_sensor(
     #
     # note: do not re-add the `adjustments` anywhere.
     distance_from_transition = sum(
-        [
-            item.distance
-            for item in (transition.items or [])
-            if item.adjustments != ABSENT_NONE
-        ]
+        item.distance
+        for item in (transition.items or [])
+        if item.adjustments != ABSENT_NONE
     ) - sum(
-        [
-            item.adjustments
-            for item in (transition.items or [])
-            if item.adjustments != ABSENT_NONE
-        ]
+        item.adjustments
+        for item in (transition.items or [])
+        if item.adjustments != ABSENT_NONE
     )
 
     _LOGGER.debug("distance_from_transition: %s", distance_from_transition)
@@ -621,8 +626,8 @@ def get_updates_for_typed_movement_sensor(
     # entries without regard to their finaized state before they're lost
     # forever.
     if stalled_from_in_transition:
-        distance_from_transition = distance_from_transition + sum(
-            [item.distance for item in (transition.prior or [])]
+        distance_from_transition += sum(
+            item.distance for item in (transition.prior or [])
         )
 
     # distance traveled can go into transition state while maintaining speed &
@@ -641,7 +646,8 @@ def get_updates_for_typed_movement_sensor(
 
     _LOGGER.debug("applicable_distance: %s", applicable_distance)
     _LOGGER.debug(
-        "applicable_distance_adjustments: %s", applicable_distance_adjustments
+        "applicable_distance_adjustments: %s",
+        applicable_distance_adjustments,
     )
 
     # if mode is changing to be the target type, then we need a trip reset
@@ -651,16 +657,14 @@ def get_updates_for_typed_movement_sensor(
         total_trip_distance = 0
         total_trip_distance_adjustments = 0
 
-    distance = distance + applicable_distance
     _LOGGER.debug(
         "distance = distance (%s) + applicable_distance (%s)",
         distance,
         applicable_distance,
     )
-    total_trip_distance = total_trip_distance + applicable_distance
-    total_trip_distance_adjustments = (
-        total_trip_distance_adjustments + applicable_distance_adjustments
-    )
+    distance += applicable_distance
+    total_trip_distance += applicable_distance
+    total_trip_distance_adjustments += applicable_distance_adjustments
 
     return TypedMovementData(
         distance=distance,

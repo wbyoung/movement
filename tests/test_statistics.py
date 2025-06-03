@@ -36,21 +36,20 @@ from custom_components.movement.statistics import (
         "max of {}",
     ],
 )
-async def test_statistics(
+def test_statistics(
     hass: HomeAssistant,
     state_characteristic: str,
     args: tuple[deque[float], deque[float]],
     result: float | None,
 ) -> None:
     """Test statistics functions."""
-
     stat = Statistic(
         state_characteristic=state_characteristic,
         samples_max_buffer_size=None,
         samples_max_age=None,
     )
 
-    for value, age in zip(*args):
+    for value, age in zip(*args, strict=False):
         stat.add_state(value, age)
 
     assert stat.value == result

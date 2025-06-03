@@ -63,10 +63,11 @@ from custom_components.movement.const import (
     ],
 )
 async def test_user_flow(
-    hass: HomeAssistant, user_input: dict, expected_result: dict
+    hass: HomeAssistant,
+    user_input: dict,
+    expected_result: dict,
 ) -> None:
     """Test starting a flow by user."""
-
     hass.states.async_set(
         "person.akio_toyoda",
         "home",
@@ -74,13 +75,15 @@ async def test_user_flow(
     )
 
     result = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": SOURCE_USER}
+        DOMAIN,
+        context={"source": SOURCE_USER},
     )
     assert result["type"] is FlowResultType.FORM
     assert result["step_id"] == "user"
 
     with patch(
-        "custom_components.movement.async_setup_entry", return_value=True
+        "custom_components.movement.async_setup_entry",
+        return_value=True,
     ) as mock_setup_entry:
         result = await hass.config_entries.flow.async_configure(
             result["flow_id"],
@@ -102,7 +105,6 @@ async def test_options_flow(
     entity_registry: er.EntityRegistry,
 ) -> None:
     """Test options flow."""
-
     mock_config = MockConfigEntry(
         domain=DOMAIN,
         title="home",
@@ -143,7 +145,8 @@ async def test_options_flow(
     )
 
     with patch(
-        "custom_components.movement.async_setup_entry", return_value=True
+        "custom_components.movement.async_setup_entry",
+        return_value=True,
     ) as mock_setup_entry:
         await hass.config_entries.async_setup(mock_config.entry_id)
         await hass.async_block_till_done()
@@ -197,7 +200,7 @@ async def test_abort_duplicated_entry(
     hass: HomeAssistant,
 ) -> None:
     """Test if we abort on duplicate user input data."""
-    DATA = {
+    data = {
         CONF_TRACKED_ENTITY: "person.akio_toyoda",
         CONF_TRIP_ADDITION: 0,
         CONF_MULTIPLIERS: {
@@ -209,7 +212,7 @@ async def test_abort_duplicated_entry(
     mock_config = MockConfigEntry(
         domain=DOMAIN,
         title="akio_toyoda",
-        data=DATA,
+        data=data,
         unique_id=f"{DOMAIN}_akio_toyoda",
     )
     mock_config.add_to_hass(hass)
@@ -221,12 +224,13 @@ async def test_abort_duplicated_entry(
     )
 
     result = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": SOURCE_USER}
+        DOMAIN,
+        context={"source": SOURCE_USER},
     )
     with patch("custom_components.movement.async_setup_entry", return_value=True):
         result = await hass.config_entries.flow.async_configure(
             result["flow_id"],
-            user_input=DATA,
+            user_input=data,
         )
         assert result["type"] is FlowResultType.ABORT
         assert result["reason"] == "already_configured"
@@ -266,7 +270,7 @@ async def test_avoid_duplicated_title(hass: HomeAssistant) -> None:
         unique_id=f"{DOMAIN}_akio_toyoda_3",
     ).add_to_hass(hass)
 
-    for i in range(0, 4):
+    for i in range(4):
         hass.states.async_set(
             f"person.akio_toyoda{i + 1}",
             "home",
@@ -275,7 +279,8 @@ async def test_avoid_duplicated_title(hass: HomeAssistant) -> None:
 
     with patch("custom_components.movement.async_setup_entry", return_value=True):
         result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": SOURCE_USER}
+            DOMAIN,
+            context={"source": SOURCE_USER},
         )
         result = await hass.config_entries.flow.async_configure(
             result["flow_id"],
@@ -295,7 +300,8 @@ async def test_avoid_duplicated_title(hass: HomeAssistant) -> None:
         await hass.async_block_till_done()
 
         result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": SOURCE_USER}
+            DOMAIN,
+            context={"source": SOURCE_USER},
         )
         result = await hass.config_entries.flow.async_configure(
             result["flow_id"],

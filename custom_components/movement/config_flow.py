@@ -46,7 +46,8 @@ SECTION_ADVANCED_OPTIONS: Final = "advanced_options"
 def _base_schema(user_input: dict[str, Any]) -> VolDictType:
     return {
         vol.Required(
-            CONF_TRACKED_ENTITY, default=user_input.get(CONF_TRACKED_ENTITY, [])
+            CONF_TRACKED_ENTITY,
+            default=user_input.get(CONF_TRACKED_ENTITY, []),
         ): EntitySelector(
             EntitySelectorConfig(domain=[DEVICE_TRACKER_DOMAIN, PERSON_DOMAIN]),
         ),
@@ -55,7 +56,10 @@ def _base_schema(user_input: dict[str, Any]) -> VolDictType:
             default=user_input.get(CONF_TRIP_ADDITION, 0),
         ): NumberSelector(
             NumberSelectorConfig(
-                min=0, max=100, step=0.01, unit_of_measurement=UnitOfLength.KILOMETERS
+                min=0,
+                max=100,
+                step=0.01,
+                unit_of_measurement=UnitOfLength.KILOMETERS,
             ),
         ),
         vol.Required(CONF_MULTIPLIERS): section(
@@ -64,32 +68,40 @@ def _base_schema(user_input: dict[str, Any]) -> VolDictType:
                     vol.Required(
                         CONF_NEIGHBORHOOD,
                         default=user_input.get(CONF_MULTIPLIERS, {}).get(
-                            CONF_NEIGHBORHOOD, 1
+                            CONF_NEIGHBORHOOD,
+                            1,
                         ),
                     ): NumberSelector(
                         NumberSelectorConfig(
-                            min=0, step=0.01, mode=NumberSelectorMode.BOX
-                        )
+                            min=0,
+                            step=0.01,
+                            mode=NumberSelectorMode.BOX,
+                        ),
                     ),
                     vol.Required(
                         CONF_LOCAL,
                         default=user_input.get(CONF_MULTIPLIERS, {}).get(CONF_LOCAL, 1),
                     ): NumberSelector(
                         NumberSelectorConfig(
-                            min=0, step=0.01, mode=NumberSelectorMode.BOX
-                        )
+                            min=0,
+                            step=0.01,
+                            mode=NumberSelectorMode.BOX,
+                        ),
                     ),
                     vol.Required(
                         CONF_HIGHWAY,
                         default=user_input.get(CONF_MULTIPLIERS, {}).get(
-                            CONF_HIGHWAY, 1
+                            CONF_HIGHWAY,
+                            1,
                         ),
                     ): NumberSelector(
                         NumberSelectorConfig(
-                            min=0, step=0.01, mode=NumberSelectorMode.BOX
-                        )
+                            min=0,
+                            step=0.01,
+                            mode=NumberSelectorMode.BOX,
+                        ),
                     ),
-                }
+                },
             ),
             {"collapsed": True},
         ),
@@ -101,24 +113,37 @@ class MovementConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
 
     VERSION = 1
 
-    def _user_form_schema(self) -> vol.Schema:
+    @staticmethod
+    def _user_form_schema() -> vol.Schema:
         return vol.Schema(_base_schema({}))
 
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
-        """Get the options flow for this handler."""
+    def async_get_options_flow(
+        config_entry: ConfigEntry,  # noqa: ARG004
+    ) -> OptionsFlow:
+        """Get the options flow for this handler.
+
+        Returns:
+            The options flow.
+        """
         return MovementOptionsFlow()
 
     async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
+        self,
+        user_input: dict[str, Any] | None = None,
     ) -> ConfigFlowResult:
-        """Handle a flow initialized by the user."""
+        """Handle a flow initialized by the user.
+
+        Returns:
+            The config flow result.
+        """
         if user_input is not None:
             self._async_abort_entries_match(user_input)
 
             title = cast(
-                State, self.hass.states.get(user_input[CONF_TRACKED_ENTITY])
+                "State",
+                self.hass.states.get(user_input[CONF_TRACKED_ENTITY]),
             ).name
 
             slugified_existing_entry_titles = [
@@ -159,25 +184,31 @@ class MovementOptionsFlow(OptionsFlow):
                                     domain=[SENSOR_DOMAIN],
                                     include_entities=[
                                         entity_id
-                                        for entity_id in entity_registry.entities.keys()
+                                        for entity_id in entity_registry.entities
                                         if _is_total_increasing_and_kilometers(
-                                            entity_registry, entity_id
+                                            entity_registry,
+                                            entity_id,
                                         )
                                     ],
                                     multiple=True,
                                 ),
-                            )
-                        }
+                            ),
+                        },
                     ),
                     {"collapsed": True},
                 ),
-            }
+            },
         )
 
     async def async_step_init(
-        self, user_input: dict[str, Any] | None = None
+        self,
+        user_input: dict[str, Any] | None = None,
     ) -> ConfigFlowResult:
-        """Handle options flow."""
+        """Handle options flow.
+
+        Returns:
+            The config flow result.
+        """
         if user_input is not None:
             advanced_options = user_input.pop(SECTION_ADVANCED_OPTIONS)
             self.hass.config_entries.async_update_entry(
@@ -196,8 +227,14 @@ def _is_total_increasing_and_kilometers(
     entity_registry: er.EntityRegistry,
     entity_id: str,
 ) -> bool:
-    """Determine if an entity_id represents an entity with a `state_class` of
-    `total_increasing` and a `unit_of_measurement` of `km`."""
+    """Check if entity_id should be included for dependent entities.
+
+    Determine if an entity_id represents an entity with a `state_class` of
+    `total_increasing` and a `unit_of_measurement` of `km`.
+
+    Returns:
+        A flag indicating if the entity should be included.
+    """
     return bool(
         (entry := entity_registry.async_get(entity_id))
         and (
@@ -205,5 +242,5 @@ def _is_total_increasing_and_kilometers(
             and entry.capabilities.get("state_class")
             == SensorStateClass.TOTAL_INCREASING
             and entry.unit_of_measurement == UnitOfLength.KILOMETERS
-        )
+        ),
     )

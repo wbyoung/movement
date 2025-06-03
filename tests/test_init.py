@@ -41,7 +41,6 @@ async def test_standard_setup(
     entity_registry: er.EntityRegistry,
 ) -> None:
     """Test all devices and entities in a standard setup."""
-
     await setup_integration(hass, mock_config_entry)
 
     device_id = mock_config_entry.entry_id
@@ -241,7 +240,6 @@ async def test_event_emitted_for_dependent_template_entity(
     entity_registry: er.EntityRegistry,
 ) -> None:
     """Test sensors when tracked device changes state."""
-
     mock_config_entry.add_to_hass(hass)
     hass.config_entries.async_update_entry(
         mock_config_entry,
@@ -273,7 +271,8 @@ async def test_event_emitted_for_dependent_template_entity(
 
     handle_event = Mock()
     cancel = hass.bus.async_listen(
-        "movement.template_entity_should_apply_update", handle_event
+        "movement.template_entity_should_apply_update",
+        handle_event,
     )
 
     mock_now._tick(tick_duration)
@@ -297,7 +296,7 @@ async def test_event_emitted_for_dependent_template_entity(
 
     assert handle_event.call_count == expected_call_count
     assert [mock_call.args for mock_call in handle_event.mock_calls] == snapshot(
-        name="event-triggers"
+        name="event-triggers",
     )
 
 
@@ -309,7 +308,10 @@ async def test_track_renamed_tracked_entity(
 ) -> None:
     """Test that config entry data is updated when tracked entity is renamed."""
     t1 = entity_registry.async_get_or_create(
-        "person", "person", "akio_toyoda", suggested_object_id="akio_toyoda"
+        "person",
+        "person",
+        "akio_toyoda",
+        suggested_object_id="akio_toyoda",
     )
 
     hass.states.async_set(t1.entity_id, "not_home")
@@ -318,7 +320,8 @@ async def test_track_renamed_tracked_entity(
     await setup_integration(hass, mock_config_entry)
 
     entity_registry.async_update_entity(
-        t1.entity_id, new_entity_id=f"{t1.entity_id}_renamed"
+        t1.entity_id,
+        new_entity_id=f"{t1.entity_id}_renamed",
     )
     await hass.async_block_till_done()
 
@@ -334,8 +337,10 @@ async def test_track_renamed_dependent_entity(
     device_registry: dr.DeviceRegistry,
     entity_registry: er.EntityRegistry,
 ) -> None:
-    """Test that config entry data is updated when dependent entity is
-    renamed."""
+    """Test renamed dependent entity.
+
+    Test that config entry data is updated when dependent entity is renamed.
+    """
     t1 = entity_registry.async_get_or_create(
         "sensor",
         "template",
@@ -363,7 +368,8 @@ async def test_track_renamed_dependent_entity(
     await setup_added_integration(hass, mock_config_entry)
 
     entity_registry.async_update_entity(
-        t1.entity_id, new_entity_id=f"{t1.entity_id}_renamed"
+        t1.entity_id,
+        new_entity_id=f"{t1.entity_id}_renamed",
     )
 
     # even with an attempt to set this, the new config entry & coordinator may
@@ -402,7 +408,10 @@ async def test_create_removed_tracked_entity_issue(
 ) -> None:
     """Test we create an issue for removed tracked entities."""
     t1 = entity_registry.async_get_or_create(
-        "person", "person", "akio_toyoda", suggested_object_id="akio_toyoda"
+        "person",
+        "person",
+        "akio_toyoda",
+        suggested_object_id="akio_toyoda",
     )
 
     hass.states.async_set(t1.entity_id, "not_home")
@@ -414,7 +423,8 @@ async def test_create_removed_tracked_entity_issue(
     await hass.async_block_till_done()
 
     assert issue_registry.async_get_issue(
-        DOMAIN, f"tracked_entity_removed_{t1.entity_id}"
+        DOMAIN,
+        f"tracked_entity_removed_{t1.entity_id}",
     )
 
 
@@ -456,5 +466,6 @@ async def test_create_removed_dependent_entity_issue(
     await hass.async_block_till_done()
 
     assert issue_registry.async_get_issue(
-        DOMAIN, f"tracked_entity_removed_{t1.entity_id}"
+        DOMAIN,
+        f"tracked_entity_removed_{t1.entity_id}",
     )
