@@ -43,13 +43,19 @@ result:
   mode_of_transit: walking
   transition:
   history:
-  - at: '2024-09-05 11:35:07.481234-07:00' # kept for recency
+
+  # kept for recency
+  - at: '2024-09-05 11:35:07.481234-07:00'
     accuracy: 7
     location: *home_location
-  - at: '2024-09-05 11:35:02.384843-07:00' # kept for recency
+
+  # kept for recency
+  - at: '2024-09-05 11:35:02.384843-07:00'
     accuracy: 8
     location: *between_neighbors_location
-  - at: '2024-09-05 11:05:06.283943-07:00' # kept for accuracy
+
+  # kept for accuracy
+  - at: '2024-09-05 11:05:06.283943-07:00'
     accuracy: 4
     location: *neighbors_house_location
   adjustments: 0

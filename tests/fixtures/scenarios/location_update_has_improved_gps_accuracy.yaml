@@ -42,8 +42,8 @@ result:
   - at: '2024-09-05 11:35:07.381234-07:00'
     accuracy: 6
     location: *park_location
-  - at: '2024-09-05 11:20:19.183472-07:00' # kept to calculate speed if updates are rapid
+  - at: '2024-09-05 11:20:19.183472-07:00'
     accuracy: 57
-    location: *home_location
+    location: *home_location # kept to calculate speed if updates are rapid
   adjustments: 0
   ignore_count: 0

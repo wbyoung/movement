@@ -5,24 +5,24 @@
 template:
   - trigger:
 
-    # this is the main trigger that will cause the sensor to be updated. see the
-    # documentation for more details on the event data that the trigger
-    # receives.
-    - platform: event
-      event_type: movement.template_entity_should_apply_update
-      event_data:
-        entity_id: sensor.toyota_prius_distance
+      # this is the main trigger that will cause the sensor to be updated. see
+      # the documentation for more details on the event data that the trigger
+      # receives.
+      - platform: event
+        event_type: movement.template_entity_should_apply_update
+        event_data:
+          entity_id: sensor.toyota_prius_distance
 
-    # this trigger exists to ensure that the sensor will become available when
-    # it is first added to the system. without it, the sensor would remain in
-    # an undefined state (without any attributes), and the movement integration
-    # would not be able to determine the `mode_type`. with it, and the
-    # conditions in the `if` below, the variable `updates` will not be defined,
-    # and the state an attributes will simply reuse the current values.
-    # (initially, this means that they will all be zero or none which is an
-    # acceptable place to start).
-    - trigger: event
-      event_type: event_template_reloaded
+      # this trigger exists to ensure that the sensor will become available when
+      # it is first added to the system. without it, the sensor would remain in
+      # an undefined state (without any attributes), and the movement
+      # integration would not be able to determine the `mode_type`. with it, and
+      # the conditions in the `if` below, the variable `updates` will not be
+      # defined, and the state an attributes will simply reuse the current
+      # values. (initially, this means that they will all be zero or none which
+      # is an acceptable place to start).
+      - trigger: event
+        event_type: event_template_reloaded
 
     action:
 
@@ -33,49 +33,49 @@ template:
       # for the sensor).
       - if:
 
-        # if the triggering event is one we may wish to skip, continue on to the
-        # next condition (which will test that the driver is correct).
-        #
-        # the following case evaluate to `false` here and will result in the
-        # sensor state & attributes being updated to the proposed values:
-        #
-        #   - the reason on the event data is `reset` for a
-        #     `movement.template_entity_should_apply_update` event.
-        #
-        # the following case will evaluate to `false` here. because this event
-        # does not define `updates` within the data, this will actually result
-        # in the sensor state & attributes being maintained as the current
-        # values.
-        #
-        #   - the event type is `event_template_reloaded`
-        #
-        - condition: template
-          value_template: >
-            {% set event = trigger.event %}
-            {% set event_type = event.event_type %}
-            {% set event_data = event.data %}
-            {{
-              event_type == 'movement.template_entity_should_apply_update' and
-              data.reason == 'update'
-            }}
+          # if the triggering event is one we may wish to skip, continue on to
+          # the next condition (which will test that the driver is correct).
+          #
+          # the following case evaluate to `false` here and will result in the
+          # sensor state & attributes being updated to the proposed values:
+          #
+          #   - the reason on the event data is `reset` for a
+          #     `movement.template_entity_should_apply_update` event.
+          #
+          # the following case will evaluate to `false` here. because this event
+          # does not define `updates` within the data, this will actually result
+          # in the sensor state & attributes being maintained as the current
+          # values.
+          #
+          #   - the event type is `event_template_reloaded`
+          #
+          - condition: template
+            value_template: >
+              {% set event = trigger.event %}
+              {% set event_type = event.event_type %}
+              {% set event_data = event.data %}
+              {{
+                event_type == 'movement.template_entity_should_apply_update' and
+                data.reason == 'update'
+              }}
 
-        # this condition checks to ensure that the event is related to the
-        # config entry for the person who is currently driving the prius (in
-        # this example, this is configured either manually or via another
-        # automation via an `input_select`). when the driver is not the current
-        # driver, this returns `true` and continues on to the `stop` condition
-        # which will cause the current values to be maintained on the sensor
-        # (because `updates` will not be defined).
-        - condition: template
-          value_template: >
-            {% set data = trigger.event.data %}
-            {% set triggering_person_slug =
-              config_entry_attr(data.config_entry_id, 'title')|slugify %}
-            {% set active_driver_slug =
-              states('input_select.active_toyota_prius_driver')|slugify %}
-            {{
-              triggering_person_slug != active_driver_slug
-            }}
+          # this condition checks to ensure that the event is related to the
+          # config entry for the person who is currently driving the prius (in
+          # this example, this is configured either manually or via another
+          # automation via an `input_select`). when the driver is not the current
+          # driver, this returns `true` and continues on to the `stop` condition
+          # which will cause the current values to be maintained on the sensor
+          # (because `updates` will not be defined).
+          - condition: template
+            value_template: >
+              {% set data = trigger.event.data %}
+              {% set triggering_person_slug =
+                config_entry_attr(data.config_entry_id, 'title')|slugify %}
+              {% set active_driver_slug =
+                states('input_select.active_toyota_prius_driver')|slugify %}
+              {{
+                triggering_person_slug != active_driver_slug
+              }}
         then:
           - stop: Skipping recalculation action for toyota_prius_distance
 
@@ -102,9 +102,12 @@ template:
         state: "{{ (updates|default(this)).state or 0 }}"
         attributes:
           mode_type: driving
-          trip_start: "{{ (updates|default(this)).attributes.get('trip_start') }}"
-          trip_distance: "{{ (updates|default(this)).attributes.get('trip_distance') }}"
-          trip_adjustments: "{{ (updates|default(this)).attributes.get('trip_adjustments') }}"
+          trip_start: >
+            {{ (updates|default(this)).attributes.get('trip_start') }}
+          trip_distance: >
+            {{ (updates|default(this)).attributes.get('trip_distance') }}
+          trip_adjustments: >
+            {{ (updates|default(this)).attributes.get('trip_adjustments') }}
 
 # this could be changed manually or via some automation.
 input_select:

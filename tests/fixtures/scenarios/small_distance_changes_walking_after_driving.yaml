@@ -52,16 +52,24 @@ result:
   - at: '2024-09-05 11:35:07.381234-07:00'
     accuracy: 28
     location: *home_location_4
-  - at: '2024-09-05 11:35:02.293842-07:00' # kept for recency
+
+  # kept for recency
+  - at: '2024-09-05 11:35:02.293842-07:00'
     accuracy: 31
     location: *home_location
-  - at: '2024-09-05 11:34:47.293842-07:00' # kept for recency & accuracy
+
+  # kept for recency & accuracy
+  - at: '2024-09-05 11:34:47.293842-07:00'
     accuracy: 27
     location: *home_location_2
-  - at: '2024-09-05 11:32:06.283742-07:00' # kept for accuracy
+
+  # kept for accuracy
+  - at: '2024-09-05 11:32:06.283742-07:00'
     accuracy: 25
     location: *home_location_3
-  - at: '2024-09-05 11:12:07.381234-07:00' # kept for accuracy
+
+  # kept for accuracy
+  - at: '2024-09-05 11:12:07.381234-07:00'
     accuracy: 6
     location: *highway_location_1
   adjustments: 0

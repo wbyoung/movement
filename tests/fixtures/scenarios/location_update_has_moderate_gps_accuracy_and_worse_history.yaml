@@ -45,7 +45,9 @@ result:
   - at: '2024-09-05 11:20:59.281834-07:00'
     accuracy: 150
     location: *neighbors_house_location
-  - at: '2024-09-05 11:20:01.381234-07:00' # kept for recency
+
+  # kept for recency
+  - at: '2024-09-05 11:20:01.381234-07:00'
     accuracy: 620
     location: *home_location
   adjustments: 0
