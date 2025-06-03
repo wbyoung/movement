@@ -1,8 +1,8 @@
 """Fixtures for testing."""
 
+from collections.abc import Generator
 import logging
 from pathlib import Path
-from typing import Generator
 
 from freezegun.api import FrozenDateTimeFactory
 from homeassistant.core import HomeAssistant

@@ -32,4 +32,5 @@ jobs:
         pip install -r requirements.test.txt
     - name: Test with pre-commit
       run: |
-        pre-commit run -a
+        SKIP=no-commit-to-branch \
+          pre-commit run -a
