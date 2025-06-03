@@ -10,7 +10,7 @@ from custom_components.movement.types import MovementData
 async def test_prior_attribute_availability(
     mock_config_entry: MockConfigEntry,
 ) -> None:
-    """Test that the prior attribute is unavailble."""
+    """Test that the prior attribute is unavailable."""
 
     transition = TransitionRegistry(mock_config_entry)
 

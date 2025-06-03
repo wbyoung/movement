@@ -59,6 +59,9 @@ known_first_party = ["custom_components", "tests"]
 forced_separate = "tests"
 combine_as_imports = true
 
+[tool.codespell]
+ignore-words-list = ["THIRDPARTY"]
+
 [tool.mypy]
 python_version = "3.13"
 follow_imports = "normal"
