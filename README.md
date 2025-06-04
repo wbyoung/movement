@@ -19,7 +19,7 @@ ability to provide accurate data.
 
 _Said another way: do not expect this integration to provide you with perfection._
 
-<img width="698" alt="Distance examples" src="https://github.com/user-attachments/assets/c430f122-2a23-424b-8f27-0b4b1ae565f8" />
+<img width="698" alt="Distance examples" src="https://github.com/user-attachments/assets/a0f9ada4-d17e-4c54-87a1-bc53e82c4b57" />
 
 There are a few more [example graphs below](#example-graphs).
 
@@ -277,11 +277,11 @@ you see fit. See the example YAML configuration linked above for more details.
 
 ## Example Graphs
 
-<img width="644" alt="Speed example" src="https://github.com/user-attachments/assets/51f72a30-d60b-4d61-ba00-4e468388ac21" />  
+<img width="644" alt="Speed example" src="https://github.com/user-attachments/assets/bd3f2c97-6cb1-40f2-9948-6a5fcc68f1d2" />  
 
-<img width="644" alt="Update rate example" src="https://github.com/user-attachments/assets/d60bdfb0-7524-4175-8e13-5813d14d5065" />  
+<img width="644" alt="Update rate example" src="https://github.com/user-attachments/assets/068a9833-5a34-4d1c-80b6-8a3ef46282d8" />  
 
-<img width="644" alt="GPS accuracy example" src="https://github.com/user-attachments/assets/71264a45-3043-45bf-ac2e-f7c2ede9a7f9" />  
+<img width="644" alt="GPS accuracy example" src="https://github.com/user-attachments/assets/0bcb309b-ee30-4d9f-a1b6-48b2450cdf9d" />  
 
 
 [config-flow-start]: https://my.home-assistant.io/redirect/config_flow_start/?domain=movement
