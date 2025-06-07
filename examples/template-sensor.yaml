@@ -99,15 +99,15 @@ template:
         name: Toyota Prius Distance
         unit_of_measurement: km
         state_class: total_increasing
-        state: "{{ (updates|default(this)).state or 0 }}"
+        state: "{{ (updates|default(this, true)).state or 0 }}"
         attributes:
           mode_type: driving
           trip_start: >
-            {{ (updates|default(this)).attributes.get('trip_start') }}
+            {{ (updates|default(this, true)).attributes.get('trip_start') }}
           trip_distance: >
-            {{ (updates|default(this)).attributes.get('trip_distance') }}
+            {{ (updates|default(this, true)).attributes.get('trip_distance') }}
           trip_adjustments: >
-            {{ (updates|default(this)).attributes.get('trip_adjustments') }}
+            {{ (updates|default(this, true)).attributes.get('trip_adjustments') }}
 
 # this could be changed manually or via some automation.
 input_select:
