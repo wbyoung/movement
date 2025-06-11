@@ -29,21 +29,17 @@ There are a few more [example graphs below](#example-graphs).
 
 Installation through [HACS][hacs] is the preferred installation method.
 
-1. Go to the HACS dashboard.
-1. Click the ellipsis menu (three dots) in the top right &rarr; choose _Custom repositories_.
-1. Enter the URL of this GitHub repository,
-   `https://github.com/wbyoung/movement`, in the _Repository_ field.
-1. Select _Integration_ as the category.
-1. Click _Add_.
+1. Go to HACS
+1. Click on Integrations
 1. Search for "Movement" &rarr; select it &rarr; press _DOWNLOAD_.
 1. Select the version (it will auto select the latest) &rarr; press _DOWNLOAD_.
 1. Restart Home Assistant then continue to [the setup section](#setup).
 
 ### Manual Download
 
-1. Go to the [release page][releases] and download the `movement.zip` attached to the latest
-   release.
-1. Unpack the file and move the folder it contains called `movement` to the following
+1. Go to the [release page][releases] and download the `movement.zip` attached
+   to the latest release.
+1. Unpack the zip file and move `custom_components/movement` to the following
    directory of your Home Assistant configuration: `/config/custom_components/`.
 1. Restart Home Assistant then continue to [the setup section](#setup).
 
