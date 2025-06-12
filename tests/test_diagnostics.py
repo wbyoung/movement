@@ -6,7 +6,6 @@ from unittest.mock import patch
 
 from freezegun import freeze_time
 from homeassistant.core import HomeAssistant
-from homeassistant.setup import async_setup_component
 import pytest
 from pytest_homeassistant_custom_component.common import (
     MockConfigEntry,
@@ -49,7 +48,6 @@ async def test_entry_diagnostics(
     changes: list[tuple[float, dict[str, Any] | None]],
 ) -> None:
     """Test config entry diagnostics."""
-    await async_setup_component(hass, "homeassistant", {})
 
     initial_attrs = {
         "friendly_name": "Akio Toyoda",
