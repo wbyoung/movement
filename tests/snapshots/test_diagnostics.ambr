@@ -1,0 +1,160 @@
+# serializer version: 1
+# name: test_entry_diagnostics[no_activity]
+  dict({
+    'data': dict({
+      'adjustments': 0,
+      'change_count': -1,
+      'distance': 0,
+      'ignore_count': 0,
+      'mode_of_transit': None,
+      'speed': None,
+    }),
+    'entry': dict({
+      'data': dict({
+        'multipliers': dict({
+          'highway': 1,
+          'local': 1,
+          'neighborhood': 1,
+        }),
+        'tracked_entity': 'person.akio_toyoda',
+        'trip_addition': 0,
+      }),
+      'disabled_by': None,
+      'discovery_keys': dict({
+      }),
+      'domain': 'movement',
+      'entry_id': 'mock-entry-id',
+      'minor_version': 1,
+      'options': dict({
+      }),
+      'pref_disable_new_entities': False,
+      'pref_disable_polling': False,
+      'source': 'user',
+      'subentries': list([
+      ]),
+      'title': 'Mock Title',
+      'unique_id': None,
+      'version': 1,
+    }),
+    'history': list([
+    ]),
+    'transition': None,
+  })
+# ---
+# name: test_entry_diagnostics[no_movement]
+  dict({
+    'data': dict({
+      'adjustments': 0,
+      'change_count': 1,
+      'distance': 0.2874,
+      'ignore_count': 0,
+      'mode_of_transit': None,
+      'speed': None,
+    }),
+    'entry': dict({
+      'data': dict({
+        'multipliers': dict({
+          'highway': 1,
+          'local': 1,
+          'neighborhood': 1,
+        }),
+        'tracked_entity': 'person.akio_toyoda',
+        'trip_addition': 0,
+      }),
+      'disabled_by': None,
+      'discovery_keys': dict({
+      }),
+      'domain': 'movement',
+      'entry_id': 'mock-entry-id',
+      'minor_version': 1,
+      'options': dict({
+      }),
+      'pref_disable_new_entities': False,
+      'pref_disable_polling': False,
+      'source': 'user',
+      'subentries': list([
+      ]),
+      'title': 'Mock Title',
+      'unique_id': None,
+      'version': 1,
+    }),
+    'history': list([
+      dict({
+        'accuracy': 5,
+        'at': '2025-05-20 10:52:18.726245+00:00',
+        'location': dict({
+          'latitude': 5.052,
+          'longitude': 159.145,
+        }),
+      }),
+    ]),
+    'transition': list([
+      dict({
+        'distance': 0.2874,
+      }),
+    ]),
+  })
+# ---
+# name: test_entry_diagnostics[some_movement]
+  dict({
+    'data': dict({
+      'adjustments': 0.0,
+      'change_count': 2,
+      'distance': 0.57481,
+      'ignore_count': 0,
+      'mode_of_transit': 'driving',
+      'speed': 19.22412,
+    }),
+    'entry': dict({
+      'data': dict({
+        'multipliers': dict({
+          'highway': 1,
+          'local': 1,
+          'neighborhood': 1,
+        }),
+        'tracked_entity': 'person.akio_toyoda',
+        'trip_addition': 0,
+      }),
+      'disabled_by': None,
+      'discovery_keys': dict({
+      }),
+      'domain': 'movement',
+      'entry_id': 'mock-entry-id',
+      'minor_version': 1,
+      'options': dict({
+      }),
+      'pref_disable_new_entities': False,
+      'pref_disable_polling': False,
+      'source': 'user',
+      'subentries': list([
+      ]),
+      'title': 'Mock Title',
+      'unique_id': None,
+      'version': 1,
+    }),
+    'history': list([
+      dict({
+        'accuracy': 5,
+        'at': '2025-05-20 10:53:12.547245+00:00',
+        'location': dict({
+          'latitude': 5.05,
+          'longitude': 159.147,
+        }),
+      }),
+      dict({
+        'accuracy': 5,
+        'at': '2025-05-20 10:52:18.726245+00:00',
+        'location': dict({
+          'latitude': 5.052,
+          'longitude': 159.145,
+        }),
+      }),
+    ]),
+    'transition': list([
+      dict({
+        'adjustments': 0.0,
+        'distance': 0.2874,
+      }),
+    ]),
+  })
+# ---
