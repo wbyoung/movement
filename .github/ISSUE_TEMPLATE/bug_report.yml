@@ -17,7 +17,7 @@ body:
       label: Requirements
       options:
         - label: >
-            I have updated Movment to the latest available version.
+            I have updated Movement to the latest available version.
           required: true
         - label: >
             I did a search to see if there is a similar issue or if a pull
