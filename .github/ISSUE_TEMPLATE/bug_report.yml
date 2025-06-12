@@ -76,6 +76,7 @@ body:
         It generally allows pinpointing defects and thus resolving issues
         faster.
 
+
         Please note: GSP locations are randomized by offsetting the latitude and
         longitude of each location by a random amount, but the same random
         amount is used for every point. This helps keep your location data
