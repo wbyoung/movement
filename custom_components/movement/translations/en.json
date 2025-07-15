@@ -77,6 +77,19 @@
             "message": "Invalid config entry provided. {config_entry} is not loaded."
         }
     },
+    "issues": {
+        "tracked_entity_removed": {
+            "title": "Dependent template entity has been removed",
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "The entity `{entity_id}` has been removed from HA, but is used in Movement for {name}. Please remove `{entity_id}` from the list of dependent entities.",
+                        "title": "Dependent template entity has been removed"
+                    }
+                }
+            }
+        }
+    },
     "options": {
         "step": {
             "init": {
