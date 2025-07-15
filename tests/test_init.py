@@ -1,5 +1,6 @@
 """Test component setup."""
 
+import datetime as dt
 from typing import Any
 from unittest.mock import Mock, patch
 
@@ -11,6 +12,7 @@ from homeassistant.helpers import (
     issue_registry as ir,
 )
 from homeassistant.setup import async_setup_component
+from homeassistant.util import dt as dt_util
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 from syrupy.assertion import SnapshotAssertion
@@ -25,7 +27,7 @@ from custom_components.movement.coordinator import (
     UPDATES_STALLED_DELTA,
 )
 
-from . import MockNow, setup_added_integration, setup_integration
+from . import MOCK_UTC_NOW, MockNow, setup_added_integration, setup_integration
 
 
 async def test_async_setup(hass: HomeAssistant):
@@ -219,11 +221,29 @@ async def test_scheduled_actions(
 
 
 @pytest.mark.parametrize(
-    ("sensor_attrs", "tick_duration", "update_location", "expected_call_count"),
+    ("sensor_attrs", "time_ticks", "update_location", "expected_call_count"),
     [
-        ({"mode_type": "driving"}, 46.723, True, 1),
-        ({}, 46.723, True, 0),
-        ({"mode_type": "driving"}, 86400, False, 2),  # stalled & reset
+        ({"mode_type": "driving"}, (46.723,), True, 1),
+        ({}, (46.723,), True, 0),
+        (
+            {"mode_type": "driving"},
+            (
+                lambda: (
+                    dt_util.start_of_local_day(
+                        MOCK_UTC_NOW + dt.timedelta(days=1),
+                    )
+                    - dt.timedelta(seconds=2)
+                ),
+                lambda: (
+                    dt_util.start_of_local_day(
+                        MOCK_UTC_NOW + dt.timedelta(days=1),
+                    )
+                    + dt.timedelta(seconds=2)
+                ),
+            ),
+            False,
+            2,  # stalled & reset
+        ),
     ],
     ids=["mode_type_driving", "mode_type_missing", "midnight_reset"],
 )
@@ -233,7 +253,7 @@ async def test_event_emitted_for_dependent_template_entity(
     mock_now: MockNow,
     snapshot: SnapshotAssertion,
     sensor_attrs: dict[str, Any],
-    tick_duration: int,
+    time_ticks: tuple[int, ...],
     update_location: bool,
     expected_call_count: int,
     device_registry: dr.DeviceRegistry,
@@ -274,8 +294,23 @@ async def test_event_emitted_for_dependent_template_entity(
         "movement.template_entity_should_apply_update",
         handle_event,
     )
+    last_tick_handle_event_call_count = 0
 
-    mock_now._tick(tick_duration)
+    for tick in time_ticks:
+        mock_now._tick(tick)
+
+        await hass.async_block_till_done()
+
+        tick_handle_event_call_count = (
+            len(handle_event.mock_calls) - last_tick_handle_event_call_count
+        )
+        last_tick_handle_event_call_count = len(handle_event.mock_calls)
+
+        assert tick_handle_event_call_count in {0, 1}, (
+            f"expected 0-1 mock calls per tick, "
+            f"but got {tick_handle_event_call_count} "
+            f"for tick {tick}"
+        )
 
     if update_location:
         hass.states.async_set(

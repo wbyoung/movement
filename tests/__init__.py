@@ -1,7 +1,9 @@
+from collections.abc import Callable
 import datetime as dt
 
 from freezegun.api import FrozenDateTimeFactory
 from homeassistant.core import HomeAssistant
+from homeassistant.util import dt as dt_util
 from pytest_homeassistant_custom_component.common import (
     MockConfigEntry,
     async_fire_time_changed,
@@ -16,8 +18,20 @@ class MockNow:
         self.hass = hass
         self.freezer = freezer
 
-    def _tick(self, seconds) -> None:
-        self.freezer.tick(dt.timedelta(seconds=seconds))
+    def _tick(
+        self,
+        tick: float
+        | dt.datetime
+        | dt.timedelta
+        | Callable[[], float | dt.datetime | dt.timedelta],
+    ) -> None:
+        if callable(tick):
+            tick = tick()
+        if isinstance(tick, dt.datetime):
+            tick -= dt_util.utcnow()
+        if isinstance(tick, (int, float)):
+            tick = dt.timedelta(seconds=tick)
+        self.freezer.tick(tick)
         async_fire_time_changed(self.hass)
 
 
