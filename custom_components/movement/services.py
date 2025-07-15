@@ -21,12 +21,9 @@ from .types import ModeOfTransit, MovementConfigEntryRuntimeData, ServiceAdjustm
 
 SERVICE_NAME_ADD_DISTANCE: Final = "add_distance"
 ATTR_ADJUSTMENTS: Final = "adjustments"
-ATTR_ATTRIBUTES: Final = "attributes"
 ATTR_CONFIG_ENTRY: Final = "config_entry"
 ATTR_DISTANCE: Final = "distance"
 ATTR_MODE_OF_TRANSIT: Final = "mode_of_transit"
-ATTR_STATE: Final = "state"
-ATTR_TRIGGER: Final = "trigger"
 
 
 SERVICE_SCHEMA_ADD_DISTANCE: Final = vol.Schema(
