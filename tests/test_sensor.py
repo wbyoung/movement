@@ -13,6 +13,7 @@ from pytest_homeassistant_custom_component.common import (
     mock_restore_cache_with_extra_data,
 )
 from syrupy.assertion import SnapshotAssertion
+from syrupy.filters import props
 
 from custom_components.movement.const import DOMAIN
 from custom_components.movement.types import (
@@ -82,7 +83,13 @@ async def test_change_on_tracked_device(
     device = device_registry.async_get_device({(DOMAIN, device_id)})
 
     assert device is not None
-    assert device == snapshot(name="device")
+    assert device == snapshot(
+        name="device",
+        exclude=props(
+            # compat for HA DeviceRegistryEntrySnapshot <2025.8.0 and >=2025.8.0
+            "suggested_area",
+        ),
+    )
 
     entities = entity_registry.entities.get_entries_for_device_id(device.id)
     assert entities == snapshot(name="entities")
