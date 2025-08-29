@@ -2703,7 +2703,6 @@
         'mock-entry-id',
       ),
     }),
-    'is_new': False,
     'labels': set({
     }),
     'manufacturer': None,
