@@ -599,8 +599,10 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 transitioning = True
 
         # calculate mode of transit
+        biking_max = self.config_entry.data.get("max_speed_biking", 16.0)
+        walking_max = self.config_entry.data.get("max_speed_walking", 8.0)
         proposed_mode = (
-            mode_of_transit_from_speed(update.speed) if update.speed else None
+            mode_of_transit_from_speed(update.speed, biking_max=biking_max, walking_max=walking_max) if update.speed else None
         )
         try:
             update_or_maintain_mode(
@@ -609,6 +611,8 @@ class MovementUpdateCoordinator(DataUpdateCoordinator[MovementData]):
                 statistics=self.statistics,
                 transition=self.transition,
                 proposed_mode=proposed_mode,
+                biking_max=biking_max,
+                walking_max=walking_max,
             )
         except TransitionRequiredCondition as err:
             _LOGGER.log(

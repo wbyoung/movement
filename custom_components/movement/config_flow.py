@@ -38,6 +38,8 @@ from .const import (
     CONF_TRACKED_ENTITY,
     CONF_TRIP_ADDITION,
     DOMAIN,
+    CONF_MAX_SPEED_BIKING,
+    CONF_MAX_SPEED_WALKING,
 )
 
 SECTION_ADVANCED_OPTIONS: Final = "advanced_options"
@@ -105,6 +107,37 @@ def _base_schema(user_input: dict[str, Any]) -> VolDictType:
             ),
             {"collapsed": True},
         ),
+        vol.Required("speed_thresholds"): section(
+            vol.Schema(
+                {
+                    vol.Required(
+                        CONF_MAX_SPEED_BIKING,
+                        default=user_input.get(CONF_MAX_SPEED_BIKING, 16.0),
+                    ): NumberSelector(
+                        NumberSelectorConfig(
+                            min=5,
+                            max=100,
+                            step=1,
+                            unit_of_measurement="km/h",
+                            mode=NumberSelectorMode.BOX,
+                        ),
+                    ),
+                    vol.Required(
+                        CONF_MAX_SPEED_WALKING,
+                        default=user_input.get(CONF_MAX_SPEED_WALKING, 8.0),
+                    ): NumberSelector(
+                        NumberSelectorConfig(
+                            min=1,
+                            max=20,
+                            step=1,
+                            unit_of_measurement="km/h",
+                            mode=NumberSelectorMode.BOX,
+                        ),
+                    ),
+                },
+            ),
+            {"collapsed": True},
+        ),
     }
 
 
@@ -139,6 +172,8 @@ class MovementConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
             The config flow result.
         """
         if user_input is not None:
+            speed_thresholds = user_input.pop("speed_thresholds", {})
+            user_input.update(speed_thresholds)
             self._async_abort_entries_match(user_input)
 
             title = cast(
@@ -211,9 +246,10 @@ class MovementOptionsFlow(OptionsFlow):
         """
         if user_input is not None:
             advanced_options = user_input.pop(SECTION_ADVANCED_OPTIONS)
+            speed_thresholds = user_input.pop("speed_thresholds", {})
             self.hass.config_entries.async_update_entry(
                 self.config_entry,
-                data={**self.config_entry.data, **user_input, **advanced_options},
+                data={**self.config_entry.data, **user_input, **advanced_options, **speed_thresholds},
             )
             return self.async_create_entry(title=self.config_entry.title, data={})
 

@@ -282,6 +282,8 @@ def update_or_maintain_mode(
     statistics: StatisticGroup,
     transition: TransitionRegistry,
     proposed_mode: ModeOfTransit | None,
+    biking_max: float = 16.0,
+    walking_max: float = 8.0,
 ) -> None:
     """Update the mode of transit if shouldn't be maintained at the prior value.
 
@@ -377,7 +379,11 @@ def update_or_maintain_mode(
             default_0(statistics.speed_recent_avg.value),
             default_0(statistics.speed_recent_max.value),
         )
-        constraint_mode = mode_of_transit_from_speed(speed_recent_combined_max)
+        constraint_mode = mode_of_transit_from_speed(
+            speed_recent_combined_max,
+            biking_max=biking_max,
+            walking_max=walking_max,
+        )
 
         _LOGGER.debug("constraint_mode: %s", constraint_mode)
 
@@ -464,7 +470,11 @@ def calculate_distance_adjustments(
     return distance_adjustments
 
 
-def mode_of_transit_from_speed(speed: float) -> ModeOfTransit:
+def mode_of_transit_from_speed(
+    speed: float,
+    biking_max: float = 16.0,
+    walking_max: float = 8.0,
+) -> ModeOfTransit:
     """Calculate mode of transit from speed.
 
     The following information is informative in making a judgment about speed
@@ -479,9 +489,9 @@ def mode_of_transit_from_speed(speed: float) -> ModeOfTransit:
     """
     return (
         ModeOfTransit.DRIVING
-        if speed >= 16
+        if speed >= biking_max
         else ModeOfTransit.BIKING
-        if speed >= 8
+        if speed >= walking_max
         else ModeOfTransit.WALKING
     )
 

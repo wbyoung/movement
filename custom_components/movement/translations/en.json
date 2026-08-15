@@ -27,6 +27,18 @@
                         },
                         "description": "Distance multiplers for different driving conditions",
                         "name": "Driving multipliers"
+                    },
+                    "speed_thresholds": {
+                        "data": {
+                            "max_speed_biking": "Max speed for biking",
+                            "max_speed_walking": "Max speed for walking"
+                        },
+                        "data_description": {
+                            "max_speed_biking": "Speeds above this will be classified as driving.",
+                            "max_speed_walking": "Speeds above this will be classified as biking."
+                        },
+                        "description": "Speed thresholds for calculating the mode of transit",
+                        "name": "Speed thresholds"
                     }
                 },
                 "title": "Movement"
@@ -121,6 +133,18 @@
                         },
                         "description": "Distance multiplers for different driving conditions",
                         "name": "Driving multipliers"
+                    },
+                    "speed_thresholds": {
+                        "data": {
+                            "max_speed_biking": "Max speed for biking",
+                            "max_speed_walking": "Max speed for walking"
+                        },
+                        "data_description": {
+                            "max_speed_biking": "Speeds above this will be classified as driving.",
+                            "max_speed_walking": "Speeds above this will be classified as biking."
+                        },
+                        "description": "Speed thresholds for calculating the mode of transit",
+                        "name": "Speed thresholds"
                     }
                 },
                 "title": "Movement"
