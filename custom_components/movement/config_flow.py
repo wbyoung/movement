@@ -117,7 +117,7 @@ def _base_schema(user_input: dict[str, Any]) -> VolDictType:
                         NumberSelectorConfig(
                             min=5,
                             max=100,
-                            step=1,
+                            step=0.1,
                             unit_of_measurement="km/h",
                             mode=NumberSelectorMode.BOX,
                         ),
@@ -129,7 +129,7 @@ def _base_schema(user_input: dict[str, Any]) -> VolDictType:
                         NumberSelectorConfig(
                             min=1,
                             max=20,
-                            step=1,
+                            step=0.1,
                             unit_of_measurement="km/h",
                             mode=NumberSelectorMode.BOX,
                         ),
