@@ -30,3 +30,5 @@ DEBOUNCE_UPDATES_DELTA: Final = dt.timedelta(seconds=5)
 
 MAX_RESTORE_HISTORY: Final = 25
 MAX_RESTORE_TRANSITION: Final = 25
+CONF_MAX_SPEED_BIKING: Final = "max_speed_biking"
+CONF_MAX_SPEED_WALKING: Final = "max_speed_walking"
