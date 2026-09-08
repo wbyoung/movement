@@ -4,9 +4,8 @@
 [![HACS installs](https://img.shields.io/github/downloads/wbyoung/movement/latest/total?label=installs&color=blue)][hacs-repo]
 [![Version](https://img.shields.io/github/v/release/wbyoung/movement)][releases]
 ![Downloads](https://img.shields.io/github/downloads/wbyoung/movement/total)
-![Build](https://img.shields.io/github/actions/workflow/status/wbyoung/movement/pytest.yml
-)
-
+![Build](https://img.shields.io/github/actions/workflow/status/wbyoung/movement/pytest.yml)
+[![Github Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-grey?&logo=GitHub-Sponsors&logoColor=EA4AAA)][gh-sponsors]
 
 This integration does its best to try to determine both how far and with what
 mode of transit you are traveling throughout the day. It builds off of
@@ -65,9 +64,9 @@ Follow the instructions to configure the integration.
 1. Choose a person or a device to track from the main dropdown.
 1. If desired, configure any of the additional options below.
 
-* **Distance to add to the start of each driving trip**  
+- **Distance to add to the start of each driving trip**  
   Set in kilometers the distance you want added to the start of each driving
-  trip. This  will add an adjustment to your total distance traveled each time
+  trip. This will add an adjustment to your total distance traveled each time
   the integration determines you're moving fast enough to be considered driving.
   The reason you may wish to do this is because some devices can take a little
   longer to "wake up" and start reporting data back to Home Assistant when in
@@ -75,17 +74,16 @@ Follow the instructions to configure the integration.
   whether or not you have _Android Auto_ or _Apple CarPlay_ that connect
   automatically, or if you charge your phone in the car.
 
-* **Driving multipliers**  
+- **Driving multipliers**  
   These settings allow you to scale up or down the distance traveled while
   driving. Driving is not in a straight line, so depending on the types of roads
   you frequent, you may find that these settings can help you tweak the
   integration to get closer to the actual distance you are driving.
 
-* **Advanced options**  
+- **Advanced options**  
   Advanced options will only appear when re-configuring the integration via the
   _CONFIGURE_ button. These are described in more detail in the
   [dedicated section below](#advanced-configuration-settings).
-
 
 ## Sensors
 
@@ -100,14 +98,13 @@ _Note: if this sensor is disabled, state will not be restored for all sensors in
 
 #### Attributes
 
-* `adjustments` The adjustments that have been added to the distance traveled; mirrors the _[sensor value](#sensorname_distance_adjustments)*_.
-* `speed` The speed that the person or device is moving; mirrors the _[sensor value](#sensorname_speed)*_.
-* `mode_of_transit` The assumed mode of transit the person is using; mirrors the _[sensor value](#sensorname_mode_of_transit)*_.
-* `ignore_count` The number of location changes that have been ignored. Changes are ignored when the GPS accuracy is poor and/or when updates arrive clustered together (a workaround for home-assistant/core#126972).
-* `update_rate`: The rate at which distance changes are being calculated per minute.
+- `adjustments` The adjustments that have been added to the distance traveled; mirrors the _[sensor value](#sensorname_distance_adjustments)\*_.
+- `speed` The speed that the person or device is moving; mirrors the _[sensor value](#sensorname_speed)\*_.
+- `mode_of_transit` The assumed mode of transit the person is using; mirrors the _[sensor value](#sensorname_mode_of_transit)\*_.
+- `ignore_count` The number of location changes that have been ignored. Changes are ignored when the GPS accuracy is poor and/or when updates arrive clustered together (a workaround for home-assistant/core#126972).
+- `update_rate`: The rate at which distance changes are being calculated per minute.
 
-_* These attributes mirror their respective sensors and are provided as part of the main distance traveled sensor for use by more complex automations. Some automations may require an understanding of the way the state is changing across all of the values simultaneously which cannot be obtained from individual sensors since state change triggers would be delivered to automations for each independently._
-
+_\* These attributes mirror their respective sensors and are provided as part of the main distance traveled sensor for use by more complex automations. Some automations may require an understanding of the way the state is changing across all of the values simultaneously which cannot be obtained from individual sensors since state change triggers would be delivered to automations for each independently._
 
 ### `sensor.<name>_distance_adjustments`
 
@@ -121,9 +118,9 @@ _Note: The value calculated by this sensor takes into account the possibility th
 
 #### Attributes
 
-* `trip_start`: The starting time of the current or last walking trip.
-* `trip_distance`: The distance traveled for the current trip.
-* `trip_adjustments`: The distance adjustments for the current trip.
+- `trip_start`: The starting time of the current or last walking trip.
+- `trip_distance`: The distance traveled for the current trip.
+- `trip_adjustments`: The distance adjustments for the current trip.
 
 ### `sensor.<name>_distance_biking`
 
@@ -133,9 +130,9 @@ _See notes in under the [walking sensor](#sensorname_distance_walking) about how
 
 #### Attributes
 
-* `trip_start`: The starting time of the current or last biking trip.
-* `trip_distance`: The distance traveled for the current trip.
-* `trip_adjustments`: The distance adjustments for the current trip.
+- `trip_start`: The starting time of the current or last biking trip.
+- `trip_distance`: The distance traveled for the current trip.
+- `trip_adjustments`: The distance adjustments for the current trip.
 
 ### `sensor.<name>_distance_driving`
 
@@ -145,9 +142,9 @@ _See notes in under the [walking sensor](#sensorname_distance_walking) about how
 
 #### Attributes
 
-* `trip_start`: The starting time of the current or last driving trip.
-* `trip_distance`: The distance traveled for the current trip.
-* `trip_adjustments`: The distance adjustments for the current trip.
+- `trip_start`: The starting time of the current or last driving trip.
+- `trip_distance`: The distance traveled for the current trip.
+- `trip_adjustments`: The distance adjustments for the current trip.
 
 ### `sensor.<name>_speed`
 
@@ -155,8 +152,8 @@ The speed that the person or device is moving based on recent updates.
 
 #### Attributes
 
-* `speed_recent_avg`: The average speed at which you've been traveling recently.
-* `speed_recent_max`: The maximum speed at which you've been traveling recently.
+- `speed_recent_avg`: The average speed at which you've been traveling recently.
+- `speed_recent_max`: The maximum speed at which you've been traveling recently.
 
 ### `sensor.<name>_mode_of_transit`
 
@@ -164,7 +161,7 @@ The assumed mode of transit the person is using based on recent updates.
 
 #### Attributes
 
-* `transitioning`: Whether it has been determined that the person or device is
+- `transitioning`: Whether it has been determined that the person or device is
   likely transitioning from one mode of transit to another.
 
 ### `sensor.<name>_gps_accuracy`
@@ -189,14 +186,13 @@ _Note: using this action will result in the [speed](#sensorname_speed) being cle
 
 #### Service Data Attributes
 
-* `config_entry`: **required** Config entry to use. Example: `1b4a46c6cba0677bbfb5a8c53e8618b0`.
-* `distance`: The distance to add in _kilometers_.
-* `adjustments`: The adjustments to add in _kilometers_. This will increment both
+- `config_entry`: **required** Config entry to use. Example: `1b4a46c6cba0677bbfb5a8c53e8618b0`.
+- `distance`: The distance to add in _kilometers_.
+- `adjustments`: The adjustments to add in _kilometers_. This will increment both
   the [distance traveled](#sensorname_distance_traveled) and the
   [distance adjustments](#sensorname_distance_adjustments). So adding a distance
   of `1.2` with adjustments of `0.2` will result in the distance traveled being
-* `mode_of_transit`: The mode of transit that should be switched to.
-
+- `mode_of_transit`: The mode of transit that should be switched to.
 
 ## Events
 
@@ -208,23 +204,22 @@ See the documentation for more details on how to configure this advanced option.
 
 #### Event Data
 
-* `entity_id`: The entity id for which this change applies. This will match the
+- `entity_id`: The entity id for which this change applies. This will match the
   [custom distance tracking template sensor](#custom-distance-tracking-template-sensors).
   Example: `sensor.toyota_prius_distance`.
-* `config_entry_id`: The config entry id for which this change applies. This can
+- `config_entry_id`: The config entry id for which this change applies. This can
   be used to get more details in templates, i.e. getting the title via
   [`config_entry_attr(config_entry_id, 'title')`][template-config-entries] or
   even all related entities via
   [`integration_entities(title)`][template-integration-entities].
-* `reason`: The reason for the change. Either `update` or `reset`.
-* `from_state`: The prior state of the
+- `reason`: The reason for the change. Either `update` or `reset`.
+- `from_state`: The prior state of the
   [`sensor.<name>_distance_traveled`](#sensorname_distance_traveled).
-* `to_state`:  The new state of the
+- `to_state`: The new state of the
   [`sensor.<name>_distance_traveled`](#sensorname_distance_traveled).
-* `updates`: The new state that should be applied to the template sensor. This
+- `updates`: The new state that should be applied to the template sensor. This
   can be applied or ignored based on logic that you choose. It includes both
   the new `state` and `attributes`. See the example for more details.
-
 
 ## Improving Location Reporting Frequency
 
@@ -246,7 +241,6 @@ life differently. Most try to strike a good balance, and this is in conflict
 with constantly obtaining and reporting GPS location.
 
 _Your mileage will vary with each of these solutions._
-
 
 ## Advanced Configuration Settings
 
@@ -276,12 +270,11 @@ you see fit. See the example YAML configuration linked above for more details.
 
 ## Example Graphs
 
-<img width="644" alt="Speed example" src="https://github.com/user-attachments/assets/bd3f2c97-6cb1-40f2-9948-6a5fcc68f1d2" />  
+<img width="644" alt="Speed example" src="https://github.com/user-attachments/assets/bd3f2c97-6cb1-40f2-9948-6a5fcc68f1d2" />
 
-<img width="644" alt="Update rate example" src="https://github.com/user-attachments/assets/068a9833-5a34-4d1c-80b6-8a3ef46282d8" />  
+<img width="644" alt="Update rate example" src="https://github.com/user-attachments/assets/068a9833-5a34-4d1c-80b6-8a3ef46282d8" />
 
-<img width="644" alt="GPS accuracy example" src="https://github.com/user-attachments/assets/0bcb309b-ee30-4d9f-a1b6-48b2450cdf9d" />  
-
+<img width="644" alt="GPS accuracy example" src="https://github.com/user-attachments/assets/0bcb309b-ee30-4d9f-a1b6-48b2450cdf9d" />
 
 [config-flow-start]: https://my.home-assistant.io/redirect/config_flow_start/?domain=movement
 [hacs]: https://hacs.xyz/
@@ -294,3 +287,4 @@ you see fit. See the example YAML configuration linked above for more details.
 [trigger-template-sensor-docs]: https://www.home-assistant.io/integrations/template/#trigger-based-template-binary-sensors-images-lights-numbers-selects-sensors-switches-and-weathers
 [template-config-entries]: https://www.home-assistant.io/docs/configuration/templating/#config-entries-examples
 [template-integration-entities]: https://www.home-assistant.io/docs/configuration/templating/#integrations-examples
+[gh-sponsors]: https://github.com/sponsors/wbyoung
